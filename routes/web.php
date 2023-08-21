@@ -21,7 +21,17 @@ use App\Http\Controllers\AnalitikPelangganController;
 */
 Route::get('/',[HomeController::class,'home'])->name('home');
 Route::get('/produk',[ProdukController::class,'index'])->name('list-produk');
+Route::get('/produk/tambah-produk', [ProdukController::class,'create'])->name('create-produk');
+
+
 Route::get('/kategori-produk',[KategoriProdukController::class,'index'])->name('kategori-produk');
+Route::get('/kategori-produk/tambah-kategori-produk', [KategoriProdukController::class,'create'])->name('create-kategori-produk');
+Route::post('/kategori-produk/tambah-kategori-produk', [KategoriProdukController::class,'store'])->name('store-kategori-produk');
+Route::get('/kategori-produk/{id}/edit-kategori-produk', [KategoriProdukController::class,'edit'])->name('edit-kategori-produk');
+Route::put('/kategori-produk/{id}/edit-kategori-produk', [KategoriProdukController::class,'update'])->name('update-kategori-produk');
+Route::delete('/kategori-produk/{id}/delete-kategori-produk', [KategoriProdukController::class,'destroy'])->name('destroy-kategori-produk');
+
+
 Route::get('/manajemen-penjual',[ManajemenPenjualController::class,'index'])->name('penjual');
 Route::get('/manajemen-pembeli',[ManajemenPembeliController::class,'index'])->name('pembeli');
 Route::get('/statistik-penjualan',[StatistikPenjualanController::class,'index'])->name('statistik-penjualan');

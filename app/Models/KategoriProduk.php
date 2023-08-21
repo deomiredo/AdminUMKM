@@ -9,4 +9,9 @@ class KategoriProduk extends Model
 {
     use HasFactory;
     protected $table = "kategori_produk";
+    protected $guarded = [];
+
+    function produks() {
+        return $this->hasMany(Produk::class,'id_kategori_produk');
+    }
 }
