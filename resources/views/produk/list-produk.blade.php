@@ -32,7 +32,8 @@
 
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Data Produk</h3>
+            <h3 class="card-title">Data Produk     </h3>
+            <h6>   //Create</h6>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -45,6 +46,7 @@
                 <th>Harga</th>
                 <th>Stok</th>
                 <th>Penjual</th>
+                <th>Aksi</th>
               </tr>
               </thead>
               <tbody>
@@ -56,6 +58,7 @@
                       <td>{{$produk->harga}}</td>
                       <td>{{$produk->stok}}</td>
                       <td>{{$produk->penjual->nama}}</td>
+                      <td>update delete</td>
                     </tr>
                 @endforeach
               </tbody>

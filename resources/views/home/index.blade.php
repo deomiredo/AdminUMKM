@@ -18,7 +18,7 @@
 @endsection
 
 @section('content')
-<div class="row">
+{{-- <div class="row">
     <div class="col-lg-3 col-6">
       <!-- small box -->
       <div class="small-box bg-info">
@@ -79,7 +79,7 @@
       </div>
     </div>
     <!-- ./col -->
-  </div>
+  </div> --}}
   <!-- /.row -->
   <!-- Main row -->
   <div class="row">
@@ -119,7 +119,7 @@
       <!-- /.card -->
 
       <!-- DIRECT CHAT -->
-      <div class="card direct-chat direct-chat-primary">
+      {{-- <div class="card direct-chat direct-chat-primary">
         <div class="card-header">
           <h3 class="card-title">Direct Chat</h3>
 
@@ -317,11 +317,11 @@
           </form>
         </div>
         <!-- /.card-footer-->
-      </div>
+      </div> --}}
       <!--/.direct-chat -->
 
       <!-- TO DO List -->
-      <div class="card">
+      {{-- <div class="card">
         <div class="card-header">
           <h3 class="card-title">
             <i class="ion ion-clipboard mr-1"></i>
@@ -448,16 +448,53 @@
         <div class="card-footer clearfix">
           <button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add item</button>
         </div>
-      </div>
+      </div> --}}
       <!-- /.card -->
     </section>
     <!-- /.Left col -->
     <!-- right col (We are only adding the ID to make the widgets sortable)-->
     <section class="col-lg-5 connectedSortable">
+<!-- Calendar -->
+<div class="card bg-gradient-success">
+  <div class="card-header border-0">
 
+    <h3 class="card-title">
+      <i class="far fa-calendar-alt"></i>
+      Calendar
+    </h3>
+    <!-- tools card -->
+    <div class="card-tools">
+      <!-- button with a dropdown -->
+      <div class="btn-group">
+        <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="dropdown-menu" role="menu">
+          <a href="#" class="dropdown-item">Add new event</a>
+          <a href="#" class="dropdown-item">Clear events</a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">View calendar</a>
+        </div>
+      </div>
+      <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
+        <i class="fas fa-minus"></i>
+      </button>
+      <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <!-- /. tools -->
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body pt-0">
+    <!--The calendar -->
+    <div id="calendar" style="width: 100%"></div>
+  </div>
+  <!-- /.card-body -->
+</div>
       <!-- Map card -->
       <div class="card bg-gradient-primary">
-        <div class="card-header border-0">
+        {{-- <div class="card-header border-0">
           <h3 class="card-title">
             <i class="fas fa-map-marker-alt mr-1"></i>
             Visitors
@@ -472,7 +509,7 @@
             </button>
           </div>
           <!-- /.card-tools -->
-        </div>
+        </div> --}}
         <div class="card-body">
           <div id="world-map" style="height: 250px; width: 100%;"></div>
         </div>
@@ -551,44 +588,7 @@
       </div>
       <!-- /.card -->
 
-      <!-- Calendar -->
-      <div class="card bg-gradient-success">
-        <div class="card-header border-0">
-
-          <h3 class="card-title">
-            <i class="far fa-calendar-alt"></i>
-            Calendar
-          </h3>
-          <!-- tools card -->
-          <div class="card-tools">
-            <!-- button with a dropdown -->
-            <div class="btn-group">
-              <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-52">
-                <i class="fas fa-bars"></i>
-              </button>
-              <div class="dropdown-menu" role="menu">
-                <a href="#" class="dropdown-item">Add new event</a>
-                <a href="#" class="dropdown-item">Clear events</a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">View calendar</a>
-              </div>
-            </div>
-            <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-          <!-- /. tools -->
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body pt-0">
-          <!--The calendar -->
-          <div id="calendar" style="width: 100%"></div>
-        </div>
-        <!-- /.card-body -->
-      </div>
+      
       <!-- /.card -->
     </section>
     <!-- right col -->

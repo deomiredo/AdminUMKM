@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pembeli;
 use Illuminate\Http\Request;
 
 class ManajemenPembeliController extends Controller
 {
     public function index()
     {
-        return view('pembeli');
+        $pembelis = Pembeli::all();
+        
+        return view('pembeli',compact('pembelis'));
+        // return view('pembeli');
     }
 }
