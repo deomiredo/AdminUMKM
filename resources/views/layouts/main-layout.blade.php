@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="{{asset('admin')}}/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{asset('admin')}}/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="{{asset('admin')}}/plugins/select2/css/select2.min.css">
+
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{asset('admin')}}/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
@@ -115,6 +117,7 @@
 <script src="{{asset('admin')}}/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{asset('admin')}}/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+{{-- <script src="{{ asset('admin/plugins/choices/choices.min.js') }}"></script> --}}
 <!-- Summernote -->
 <script src="{{asset('admin')}}/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
@@ -123,6 +126,7 @@
 <script src="{{asset('admin')}}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{asset('admin')}}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="{{asset('admin')}}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="{{asset('admin')}}/plugins/select2/js/select2.full.min.js"></script>
 <script src="{{asset('admin')}}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
 <script src="{{asset('admin')}}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
 <script src="{{asset('admin')}}/plugins/jszip/jszip.min.js"></script>
@@ -131,12 +135,19 @@
 <script src="{{asset('admin')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="{{asset('admin')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="{{asset('admin')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="{{asset('admin')}}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('admin')}}/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('admin')}}/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('admin')}}/dist/js/pages/dashboard.js"></script>
+<script>
+  $(function () {
+      //Initialize Select2 Elements
+      $('.select2').select2();
+  });
+</script>
 @yield('script')
 </body>
 </html>

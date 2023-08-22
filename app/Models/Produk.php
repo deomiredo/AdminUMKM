@@ -11,6 +11,8 @@ class Produk extends Model
 
     protected $table = "produk";
 
+    protected $guarded = [];
+
     function penjual() {
         return $this->belongsTo(Penjual::class,'id_penjual');
     }

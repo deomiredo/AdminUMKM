@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KategoriProduk;
+use App\Models\Penjual;
 use App\Models\Produk;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProdukController extends Controller
 {
@@ -16,7 +20,7 @@ class ProdukController extends Controller
     {
         $produks = Produk::all();
         // dd($produk);
-        return view('produk.list-produk',compact('produks'));
+        return view('produk.list-produk', compact('produks'));
     }
 
     /**
@@ -26,7 +30,9 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        return view('produk.create-produk');
+        $kategori_produks = KategoriProduk::all();
+        $penjuals = Penjual::all();
+        return view('produk.create-produk',compact('kategori_produks','penjuals'));
     }
 
     /**
@@ -37,7 +43,41 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $validated = $request->validate(
+            [
+                'nama_produk' => 'required',
+                'deskripsi' => 'required',
+                'id_kategori_produk' => 'required',
+                'id_penjual' => 'required',
+                'harga' => 'required',
+                // 'status' => ['required', Rule::in(Berita::$enumFields['status'])],
+                'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            ],
+            [
+                'gambar.image' => 'File yang diupload harus bertipe Gambar: jpeg,png,jpg,gif,svg',
+                'required'=>'Kolom Harus Di isi'
+                // pesan validasi lainnya
+            ],
+        );
+        // dd($request->gambar);
+
+        $gambar = $request->file('gambar');
+        // dd($gambar);
+        $nama_file = Str::uuid() . '.' . $gambar->getClientOriginalExtension();
+        $path = $gambar->storeAs('images/produk', $nama_file);
+        $url = Storage::url($path);
+
+        $produk = Produk::create([
+            'nama_produk'=>$request->nama_produk,
+            'deskripsi'=>$request->deskripsi,
+            'harga'=>$request->harga,
+            'stok'=>$request->stok??0,
+            'id_kategori_produk'=>$request->id_kategori_produk,
+            'gambar'=>$url,
+            'id_penjual'=> $request->id_penjual,
+        ]);
+        return redirect(route('list-produk'))->with('success','Berhasil Menambahkan Produk');
     }
 
     /**

@@ -22,6 +22,7 @@ use App\Http\Controllers\AnalitikPelangganController;
 Route::get('/',[HomeController::class,'home'])->name('home');
 Route::get('/produk',[ProdukController::class,'index'])->name('list-produk');
 Route::get('/produk/tambah-produk', [ProdukController::class,'create'])->name('create-produk');
+Route::post('/produk/tambah-produk', [ProdukController::class,'store'])->name('store-produk');
 
 
 Route::get('/kategori-produk',[KategoriProdukController::class,'index'])->name('kategori-produk');

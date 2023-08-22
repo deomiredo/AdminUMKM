@@ -5,13 +5,18 @@
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'jquery'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.adminlte = {}, global.jQuery));
-})(this, (function (exports, $) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['exports', 'jquery'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.adminlte = {}, global.jQuery));
+})(this, (function (exports, $) {
+  'use strict';
 
-  function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+  function _interopDefaultLegacy(e) {
+    return e && typeof e === 'object' && 'default' in e ? e : {
+      'default': e
+    };
+  }
 
-  var $__default = /*#__PURE__*/_interopDefaultLegacy($);
+  var $__default = /*#__PURE__*/ _interopDefaultLegacy($);
 
   /**
    * --------------------------------------------
@@ -53,7 +58,7 @@
     onLoadFail: function onLoadFail(_jqXHR, _textStatus, _errorThrown) {}
   };
 
-  var CardRefresh = /*#__PURE__*/function () {
+  var CardRefresh = /*#__PURE__*/ function () {
     function CardRefresh(element, settings) {
       this._element = element;
       this._parent = element.parents(SELECTOR_CARD$1).first();
@@ -224,7 +229,7 @@
     minimizeIcon: 'fa-compress'
   };
 
-  var CardWidget = /*#__PURE__*/function () {
+  var CardWidget = /*#__PURE__*/ function () {
     function CardWidget(element, settings) {
       this._element = element;
       this._parent = element.parents(SELECTOR_CARD).first();
@@ -455,7 +460,7 @@
    * ====================================================
    */
 
-  var ControlSidebar = /*#__PURE__*/function () {
+  var ControlSidebar = /*#__PURE__*/ function () {
     function ControlSidebar(element, config) {
       this._element = element;
       this._config = config;
@@ -746,7 +751,7 @@
    * ====================================================
    */
 
-  var DirectChat = /*#__PURE__*/function () {
+  var DirectChat = /*#__PURE__*/ function () {
     function DirectChat(element) {
       this._element = element;
     }
@@ -828,7 +833,7 @@
    * ====================================================
    */
 
-  var Dropdown = /*#__PURE__*/function () {
+  var Dropdown = /*#__PURE__*/ function () {
     function Dropdown(element, config) {
       this._config = config;
       this._element = element;
@@ -948,9 +953,9 @@
    * --------------------------------------------
    */
   /**
-    * Constants
-    * ====================================================
-    */
+   * Constants
+   * ====================================================
+   */
 
   var NAME$9 = 'ExpandableTable';
   var DATA_KEY$9 = 'lte.expandableTable';
@@ -963,11 +968,11 @@
   var SELECTOR_DATA_TOGGLE$2 = '[data-widget="expandable-table"]';
   var SELECTOR_ARIA_ATTR = 'aria-expanded';
   /**
-    * Class Definition
-    * ====================================================
-    */
+   * Class Definition
+   * ====================================================
+   */
 
-  var ExpandableTable = /*#__PURE__*/function () {
+  var ExpandableTable = /*#__PURE__*/ function () {
     function ExpandableTable(element, options) {
       this._options = options;
       this._element = element;
@@ -1039,9 +1044,9 @@
     return ExpandableTable;
   }();
   /**
-    * Data API
-    * ====================================================
-    */
+   * Data API
+   * ====================================================
+   */
 
 
   $__default["default"](SELECTOR_TABLE).ready(function () {
@@ -1051,9 +1056,9 @@
     ExpandableTable._jQueryInterface.call($__default["default"](this), 'toggleRow');
   });
   /**
-    * jQuery API
-    * ====================================================
-    */
+   * jQuery API
+   * ====================================================
+   */
 
   $__default["default"].fn[NAME$9] = ExpandableTable._jQueryInterface;
   $__default["default"].fn[NAME$9].Constructor = ExpandableTable;
@@ -1089,7 +1094,7 @@
    * ====================================================
    */
 
-  var Fullscreen = /*#__PURE__*/function () {
+  var Fullscreen = /*#__PURE__*/ function () {
     function Fullscreen(_element, _options) {
       this.element = _element;
       this.options = $__default["default"].extend({}, Default$8, _options);
@@ -1157,9 +1162,9 @@
     return Fullscreen;
   }();
   /**
-    * Data API
-    * ====================================================
-    */
+   * Data API
+   * ====================================================
+   */
 
 
   $__default["default"](document).on('click', SELECTOR_DATA_WIDGET$2, function () {
@@ -1244,7 +1249,7 @@
    * ====================================================
    */
 
-  var IFrame = /*#__PURE__*/function () {
+  var IFrame = /*#__PURE__*/ function () {
     function IFrame(element, config) {
       this._config = config;
       this._element = element;
@@ -1720,7 +1725,7 @@
    * ====================================================
    */
 
-  var Layout = /*#__PURE__*/function () {
+  var Layout = /*#__PURE__*/ function () {
     function Layout(element, config) {
       this._config = config;
       this._element = element;
@@ -1965,7 +1970,7 @@
    * ====================================================
    */
 
-  var PushMenu = /*#__PURE__*/function () {
+  var PushMenu = /*#__PURE__*/ function () {
     function PushMenu(element, options) {
       this._element = element;
       this._options = $__default["default"].extend({}, Default$5, options);
@@ -2199,7 +2204,7 @@
    * ====================================================
    */
 
-  var SidebarSearch = /*#__PURE__*/function () {
+  var SidebarSearch = /*#__PURE__*/ function () {
     function SidebarSearch(_element, _options) {
       this.element = _element;
       this.options = $__default["default"].extend({}, Default$4, _options);
@@ -2477,7 +2482,7 @@
    * ====================================================
    */
 
-  var NavbarSearch = /*#__PURE__*/function () {
+  var NavbarSearch = /*#__PURE__*/ function () {
     function NavbarSearch(_element, _options) {
       this._element = _element;
       this._config = $__default["default"].extend({}, Default$3, _options);
@@ -2610,7 +2615,7 @@
    * ====================================================
    */
 
-  var Toasts = /*#__PURE__*/function () {
+  var Toasts = /*#__PURE__*/ function () {
     function Toasts(element, config) {
       this._config = config;
 
@@ -2789,7 +2794,7 @@
    * ====================================================
    */
 
-  var TodoList = /*#__PURE__*/function () {
+  var TodoList = /*#__PURE__*/ function () {
     function TodoList(element, config) {
       this._config = config;
       this._element = element;
@@ -2912,7 +2917,7 @@
    * ====================================================
    */
 
-  var Treeview = /*#__PURE__*/function () {
+  var Treeview = /*#__PURE__*/ function () {
     function Treeview(element, config) {
       this._config = config;
       this._element = element;
@@ -3063,7 +3068,10 @@
   exports.TodoList = TodoList;
   exports.Treeview = Treeview;
 
-  Object.defineProperty(exports, '__esModule', { value: true });
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
 
 }));
 //# sourceMappingURL=adminlte.js.map
+
