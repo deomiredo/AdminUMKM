@@ -27,9 +27,9 @@
         <!-- /.card -->
 
         <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Data Pembeli     </h3>
-            <h6>   //Create</h6>
+          <div class="card-header d-flex justify-content-between">
+            <h3 class="card-title">Data Pembeli</h3>
+            <a class="item-right ml-auto btn btn-success btn-sm" href="{{ route('create-pembeli') }}"> Tambah</a>
           </div>
           <!-- /.card-header -->
           <div class="card-body">

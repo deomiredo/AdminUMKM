@@ -9,4 +9,6 @@ class Komentar extends Model
 {
     use HasFactory;
     protected $table= 'komentar';
+
+    protected $guarded = [];
 }

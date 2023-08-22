@@ -9,4 +9,6 @@ class Penjual extends Model
 {
     use HasFactory;
     protected $table = 'penjual';
+
+    protected $guarded = [];
 }

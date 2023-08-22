@@ -23,6 +23,8 @@ Route::get('/',[HomeController::class,'home'])->name('home');
 Route::get('/produk',[ProdukController::class,'index'])->name('list-produk');
 Route::get('/produk/tambah-produk', [ProdukController::class,'create'])->name('create-produk');
 Route::post('/produk/tambah-produk', [ProdukController::class,'store'])->name('store-produk');
+Route::get('/produk/{id}/edit-produk', [ProdukController::class,'edit'])->name('edit-produk');
+Route::put('/produk/{id}/edit-produk', [ProdukController::class,'update'])->name('update-produk');
 
 
 Route::get('/kategori-produk',[KategoriProdukController::class,'index'])->name('kategori-produk');
@@ -34,7 +36,13 @@ Route::delete('/kategori-produk/{id}/delete-kategori-produk', [KategoriProdukCon
 
 
 Route::get('/manajemen-penjual',[ManajemenPenjualController::class,'index'])->name('penjual');
+Route::get('tambah-penjual', [ManajemenPenjualController::class,'create'])->name('create-penjual');
+Route::post('tambah-penjual', [ManajemenPenjualController::class,'store'])->name('store-penjual');
+
 Route::get('/manajemen-pembeli',[ManajemenPembeliController::class,'index'])->name('pembeli');
+Route::get('/tambah-pembeli', [ManajemenPembeliController::class,'create'])->name('create-pembeli');
+Route::post('/tambah-pembeli', [ManajemenPembeliController::class,'store'])->name('store-pembeli');
+
 Route::get('/statistik-penjualan',[StatistikPenjualanController::class,'index'])->name('statistik-penjualan');
 Route::get('/statistik-pembeli-penjual',[StatistikPembeliPenjualController::class,'index'])->name('statistik-pembeli-penjual');
 Route::get('/analitik-pelanggan',[AnalitikPelangganController::class,'index'])->name('analitik-pelanggan');

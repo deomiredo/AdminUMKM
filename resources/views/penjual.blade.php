@@ -27,9 +27,9 @@
         <!-- /.card -->
 
         <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Data Penjual     </h3>
-            <h6>   //Create</h6>
+          <div class="card-header d-flex justify-content-between">
+            <h3 class="card-title">Data Penjual</h3>
+            <a class="item-right ml-auto btn btn-success btn-sm" href="{{ route('create-penjual') }}"> Tambah</a>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -40,6 +40,7 @@
                 <th>Nama Penjual</th>
                 <th>No. HP</th>
                 <th>Nama Toko</th>
+                <th>Logo Toko</th>
                 <th>Aksi</th>
               </tr>
               </thead>
@@ -50,6 +51,7 @@
                       <td>{{$penjual->nama}}</td>
                       <td>{{$penjual->no_hp}}</td>
                       <td>{{$penjual->nama_toko}}</td>
+                      <td><a href="{{$penjual->logo}}" target="_blank">lihat gambar</a> </td>
                       <td>update delete</td>
                     </tr>
                 @endforeach

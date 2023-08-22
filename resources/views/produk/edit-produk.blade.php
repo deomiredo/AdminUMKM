@@ -1,7 +1,5 @@
 @extends('layouts.main-layout')
 
-
-
 @section('script')
     <script>
         $(function() {
@@ -24,7 +22,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('list-produk') }}">Produk</a></li>
-                        <li class="breadcrumb-item active">Tambah Produk</li>
+                        <li class="breadcrumb-item active">Edit Produk</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -38,33 +36,16 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Tambah Produk</h5>
+                    <h5 class="card-title">Edit Produk</h5>
                 </div>
-                <form action="{{ route('store-produk') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('update-produk',$produk->id) }}" method="post">
                     @csrf
+                    @method('PUT')
                     <div class="card-body">
-                        <div class="form-group row">
-                            <label for="id_kategori_produk" class="col-sm-2 col-form-label">Pilih Penjual</label>
-                            <div class="col-sm-10">
-                                <select class="form-control select2" style="width: 100%;" name="id_penjual" >
-                                    <option selected value="{{ null }}">Open this select menu</option>
-                                    @foreach ($penjuals as $penjual)
-                                        <option value="{{ $penjual->id }}">{{ $penjual->nama_toko }} | {{ $penjual->nama }}</option>
-                                    @endforeach
-                                </select>
-
-                                @error('id_penjual')
-                                    <small class="text-danger">
-                                        {{ $message }}
-                                    </small>
-                                @enderror
-                            </div>
-
-                        </div>
                         <div class="form-group row">
                             <label for="nama_produk" class="col-sm-2 col-form-label">Nama Produk</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="Masukan Nama Produk" name="nama_produk" value="{{ old('nama_produk') }}" required>
+                                <input type="text" class="form-control" placeholder="Masukan Nama Produk" name="nama_produk" value="{{ old('nama_produk',$produk->nama_produk) }}" required>
                                 @error('nama_produk')
                                     <small class="text-danger">
                                         {{ $message }}
@@ -86,7 +67,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="id_kategori_produk" class="col-sm-2 col-form-label">Kategori Produk</label>
                             <div class="col-sm-10">
                                 <select class="form-control select2" style="width: 100%;" name="id_kategori_produk" >
@@ -102,8 +83,7 @@
                                     </small>
                                 @enderror
                             </div>
-
-                        </div>
+                        </div> --}}
                         <div class="form-group row">
 
                             <label for="harga" class="col-sm-2 col-form-label">Harga Produk</label>
@@ -145,7 +125,7 @@
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-success mr-1">Submit</button>
-                        <a href={{ route('kategori-produk') }} class="btn btn-default ">Cancel</a>
+                        <a href={{ route('list-produk') }} class="btn btn-default ">Cancel</a>
                     </div>
                 </form>
             </div>

@@ -9,4 +9,6 @@ class Isikeranjang extends Model
 {
     use HasFactory;
     protected $table = "isi_keranjang";
+    
+    protected $guarded = [];
 }

@@ -39,6 +39,7 @@
                             <tr>
                                 <th>NO</th>
                                 <th>Nama Produk</th>
+                                <th>Gambar</th>
                                 <th>Kategori Produk</th>
                                 <th>Harga</th>
                                 <th>Stok</th>
@@ -51,11 +52,15 @@
                                 <tr>
                                     <td>{{ $produk->id }}</td>
                                     <td>{{ $produk->nama_produk }}</td>
+                                    <td><a href="{{$produk->gambar}}" target="_blank">lihat gambar</a> </td>
                                     <td>{{ $produk->kategori->nama_kategori }}</td>
                                     <td>{{ $produk->harga }}</td>
                                     <td>{{ $produk->stok }}</td>
                                     <td>{{ $produk->penjual->nama }}</td>
-                                    <td>update delete</td>
+                                    <td>
+                                        <a href="{{ route('edit-produk',$produk->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                        delete
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -86,32 +86,45 @@ class ProdukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function edit($id) {
+        $produk = Produk::find($id);
+
+        return view('produk.edit-produk',compact('produk'));
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    function update($id, Request $request) {
+        $Produk = Produk::find($id);
+        $validated = $request->validate(
+            [
+                'nama_produk' => 'required',
+                'deskripsi' => 'required',
+                'harga' => 'required',
+                // 'status' => ['required', Rule::in(Berita::$enumFields['status'])],
+                'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            ],
+            [
+                'gambar.image' => 'File yang diupload harus bertipe Gambar: jpeg,png,jpg,gif,svg',
+                'required'=>'Kolom Harus Di isi'
+                // pesan validasi lainnya
+            ],
+        );
+        // dd($request->gambar);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        $gambar = $request->file('gambar');
+        // dd($gambar);
+        $nama_file = Str::uuid() . '.' . $gambar->getClientOriginalExtension();
+        $path = $gambar->storeAs('images/produk', $nama_file);
+        $url = Storage::url($path);
+
+        $produk = Produk::create([
+            'nama_produk'=>$request->nama_produk,
+            'deskripsi'=>$request->deskripsi,
+            'harga'=>$request->harga,
+            'stok'=>$request->stok??0,
+            'gambar'=>$url,
+        ]);
+        return redirect(route('list-produk'))->with('success','Berhasil Mengedit Produk');
     }
 
     /**
