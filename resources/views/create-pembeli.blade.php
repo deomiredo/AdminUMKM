@@ -140,6 +140,24 @@
                         <div class="form-group row">
                             <label for="verifikasi" class="col-sm-2 col-form-label">Verifikasi</label>
                             <div class="col-sm-10">
+                                <select class="form-control" style="width: 100%;" name="verifikasi" >
+                                    <option selected value="{{ 0 }}">Belum Verifikasi</option>
+                                    <option value="{{ 1 }}">Sudah Verifikasi</option>
+                                    {{-- @foreach ($pembelis as $pembeli)
+                                        <option value="{{ $pembeli->id }}">{{ $pembeli->nama_lengkap }} | {{ $penjual->nama }}</option>
+                                    @endforeach --}}
+                                </select>
+
+                                @error('verifikasi')
+                                    <small class="text-danger">
+                                        {{ $message }}
+                                    </small>
+                                @enderror
+                            </div>
+                        </div>
+                        {{-- <div class="form-group row">
+                            <label for="verifikasi" class="col-sm-2 col-form-label">Verifikasi</label>
+                            <div class="col-sm-10">
                                 <div class="form-group">
                                     <label>Status</label><br>
                                     <label class="radio-inline">
@@ -155,7 +173,7 @@
                                     </small>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group row">
                             <label for="foto" class="col-sm-2 col-form-label">Foto Pembeli</label>
                             <div class="col-sm-10">

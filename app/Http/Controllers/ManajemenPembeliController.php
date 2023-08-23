@@ -30,11 +30,11 @@ class ManajemenPembeliController extends Controller
         $validated = $request->validate(
             [
                 'nama_lengkap' => 'required',
-                'username' => 'required',
-                'no_hp' => 'required',
+                'username' => 'required|unique:pembeli,username',
+                'no_hp' => 'required|unique:pembeli,no_hp',
                 'password' => 'required',
                 'verifikasi' => 'required',
-                'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+                'foto' => 'image|mimes:jpeg,png,jpg,gif,svg',
                 'deskripsi' => 'required',
                 
                 // 'status' => ['required', Rule::in(Berita::$enumFields['status'])],
@@ -48,18 +48,23 @@ class ManajemenPembeliController extends Controller
         );
         // dd($request->gambar);
 
-        $foto = $request->file('foto');
-        // dd($gambar);
-        $nama_file = Str::uuid() . '.' . $foto->getClientOriginalExtension();
-        $path = $foto->storeAs('images/penjual', $nama_file);
-        $url = Storage::url($path);
+        if($request->hasFile('foto')){
+            $foto = $request->file('foto');
+            // dd($gambar);
+            $nama_file = Str::uuid() . '.' . $foto->getClientOriginalExtension();
+            $path = $foto->storeAs('images/penjual', $nama_file);
+            $url = Storage::url($path);
+        }
+        else{
+            $url = asset('img/default-profile.jpg');
+        }
 
         $pembeli = Pembeli::create([
             'nama_lengkap'=>$request->nama_lengkap,
             'username'=>$request->username,
             'no_hp'=>$request->no_hp,
             'password'=>$request->password,
-            'verifikasi'=> $request->verifikasi,
+            'verifikasi'=> $request->verifikasi==0?'false':'true',
             'foto'=>$url,
             'deskripsi'=> $request->deskripsi
         ]);
