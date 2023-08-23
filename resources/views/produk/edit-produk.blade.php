@@ -10,6 +10,27 @@
 
         })
     </script>
+    <script>
+        function previewImage() {
+            var imageInput = document.getElementById('imageInput');
+            var imagePreview = document.getElementById('imagePreview');
+            
+            if (imageInput.files && imageInput.files[0]) {
+                var reader = new FileReader();
+    
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                }
+    
+                reader.readAsDataURL(imageInput.files[0]);
+            } else {
+                imagePreview.src = '{{ old('gambar',$produk->gambar) }}';
+                // imagePreview.style.display = 'none';
+            }
+        }
+    </script>
+    
 @endsection
 
 @section('content-header')
@@ -38,7 +59,7 @@
                 <div class="card-header">
                     <h5 class="card-title">Edit Produk</h5>
                 </div>
-                <form action="{{ route('update-produk',$produk->id) }}" method="post">
+                <form action="{{ route('update-produk',$produk->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="card-body">
@@ -54,10 +75,29 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="id_kategori_produk" class="col-sm-2 col-form-label">Kategori Produk</label>
+                            <div class="col-sm-10">
+                                <select class="form-control select2" style="width: 100%;" name="id_kategori_produk" >
+                                    {{-- <option selected value="{{ null }}">Open this select menu</option> --}}
+
+                                    @foreach ($kategori_produks as $kategori_produk)
+                                        <option value="{{ $kategori_produk->id }}" {{ $produk->id_kategori_produk == $kategori_produk->id?'selected':'' }}>{{ $kategori_produk->nama_kategori }}</option>
+                                    @endforeach
+                                </select>
+
+                                @error('id_kategori_produk')
+                                    <small class="text-danger">
+                                        {{ $message }}
+                                    </small>
+                                @enderror
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
                             <label for="nama_produk" class="col-sm-2 col-form-label">Gambar Produk</label>
                             <div class="col-sm-10">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="gambar">
+                                    <input type="file" class="custom-file-input" id="imageInput" onchange="previewImage()" name="gambar">
                                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                 </div>
                                 @error('gambar')
@@ -65,6 +105,7 @@
                                         {{ $message }}
                                     </small>
                                 @enderror
+                                <img id="imagePreview" src="{{ old('gambar',$produk->gambar) }}" alt="Image Preview" style="max-width: 300px; max-height: 300px; ">
                             </div>
                         </div>
                         {{-- <div class="form-group row">
@@ -88,7 +129,7 @@
 
                             <label for="harga" class="col-sm-2 col-form-label">Harga Produk</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" placeholder="Masukan Harga Produk" name="harga" value="{{ old('harga') }}" required>
+                                <input type="number" class="form-control" placeholder="Masukan Harga Produk" name="harga" value="{{ old('harga',$produk->harga) }}" required>
                                 @error('harga')
                                     <small class="text-danger">
                                         {{ $message }}
@@ -100,7 +141,7 @@
 
                             <label for="stok" class="col-sm-2 col-form-label">Stok Produk</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" placeholder="Masukan Stok Produk" name="stok" value="{{ old('stok') }}">
+                                <input type="number" class="form-control" placeholder="Masukan Stok Produk" name="stok" value="{{ old('stok',$produk->stok) }}">
                                 @error('stok')
                                     <small class="text-danger">
                                         {{ $message }}
@@ -112,7 +153,7 @@
                             <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi Produk</label>
                             <div class="col-sm-10">
                                 <textarea id="summernote" name="deskripsi" required>
-                                    {{ old('deskripsi') }}
+                                    {{ old('deskripsi',$produk->deskripsi) }}
                                   </textarea>
                                 @error('deskripsi')
                                     <small class="text-danger">

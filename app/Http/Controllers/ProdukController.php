@@ -88,41 +88,48 @@ class ProdukController extends Controller
      */
     public function edit($id) {
         $produk = Produk::find($id);
-
-        return view('produk.edit-produk',compact('produk'));
+        $kategori_produks = KategoriProduk::all();
+        return view('produk.edit-produk',compact('produk','kategori_produks'));
         
     }
 
     function update($id, Request $request) {
-        $Produk = Produk::find($id);
+        $produk = Produk::find($id);
+        
         $validated = $request->validate(
             [
                 'nama_produk' => 'required',
                 'deskripsi' => 'required',
+                'id_kategori_produk'=>'required',
                 'harga' => 'required',
-                // 'status' => ['required', Rule::in(Berita::$enumFields['status'])],
-                'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg',
+                'gambar' => 'image|mimes:jpeg,png,jpg,gif',
             ],
             [
                 'gambar.image' => 'File yang diupload harus bertipe Gambar: jpeg,png,jpg,gif,svg',
                 'required'=>'Kolom Harus Di isi'
-                // pesan validasi lainnya
             ],
         );
+        // dd($request);
         // dd($request->gambar);
 
-        $gambar = $request->file('gambar');
-        // dd($gambar);
-        $nama_file = Str::uuid() . '.' . $gambar->getClientOriginalExtension();
-        $path = $gambar->storeAs('images/produk', $nama_file);
-        $url = Storage::url($path);
+        if($request->file('gambar')){
+            $pathFoto = str_replace(url('/storage'), '', $produk->gambar);
+            Storage::delete($pathFoto);
 
-        $produk = Produk::create([
+            $gambar = $request->file('gambar');
+            // dd($gambar);
+            $nama_file = Str::uuid() . '.' . $gambar->getClientOriginalExtension();
+            $path = $gambar->storeAs('images/produk', $nama_file);
+            $url = Storage::url($path);
+            $produk->update(['gambar'=>$url]);  
+        }
+
+        $produk->update([
             'nama_produk'=>$request->nama_produk,
             'deskripsi'=>$request->deskripsi,
+            'id_kategori_produk'=>$request->id_kategori_produk,
             'harga'=>$request->harga,
             'stok'=>$request->stok??0,
-            'gambar'=>$url,
         ]);
         return redirect(route('list-produk'))->with('success','Berhasil Mengedit Produk');
     }
@@ -135,6 +142,6 @@ class ProdukController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }
