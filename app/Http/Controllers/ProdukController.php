@@ -142,6 +142,10 @@ class ProdukController extends Controller
      */
     public function destroy($id)
     {
-        
+        $produk = Produk::find($id);
+        $pathFoto = str_replace(url('/storage'), '', $produk->gambar);
+        Storage::delete($pathFoto);
+        $produk->delete();
+        return redirect(route('list-produk'))->with('success','Berhasil Menghapus Produk');
     }
 }

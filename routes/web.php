@@ -25,6 +25,7 @@ Route::get('/produk/tambah-produk', [ProdukController::class,'create'])->name('c
 Route::post('/produk/tambah-produk', [ProdukController::class,'store'])->name('store-produk');
 Route::get('/produk/{id}/edit-produk', [ProdukController::class,'edit'])->name('edit-produk');
 Route::put('/produk/{id}/edit-produk', [ProdukController::class,'update'])->name('update-produk');
+Route::delete('/produk/{id}/edit-produk', [ProdukController::class,'destroy'])->name('destroy-produk');
 
 
 Route::get('/kategori-produk',[KategoriProdukController::class,'index'])->name('kategori-produk');

@@ -59,7 +59,7 @@
                                     <td>{{ $produk->penjual->nama }}</td>
                                     <td>
                                         <a href="{{ route('edit-produk',$produk->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                        delete
+                                        @include('produk.delete-produk')
                                     </td>
                                 </tr>
                             @endforeach
