@@ -37,8 +37,11 @@ Route::delete('/kategori-produk/{id}/delete-kategori-produk', [KategoriProdukCon
 
 
 Route::get('/manajemen-penjual',[ManajemenPenjualController::class,'index'])->name('penjual');
-Route::get('tambah-penjual', [ManajemenPenjualController::class,'create'])->name('create-penjual');
-Route::post('tambah-penjual', [ManajemenPenjualController::class,'store'])->name('store-penjual');
+Route::get('/manajemen-penjual/tambah-penjual', [ManajemenPenjualController::class,'create'])->name('create-penjual');
+Route::post('/manajemen-penjual/tambah-penjual', [ManajemenPenjualController::class,'store'])->name('store-penjual');
+Route::get('/manajemen-penjual/{id}/edit-penjual', [ManajemenPenjualController::class,'edit'])->name('edit-penjual');
+Route::put('/manajemen-penjual/{id}/edit-penjual', [ManajemenPenjualController::class,'update'])->name('update-penjual');
+Route::delete('/manajemen-penjual/{id}/hapus-penjual', [ManajemenPenjualController::class,'destroy'])->name('destroy-penjual');
 
 Route::get('/manajemen-pembeli',[ManajemenPembeliController::class,'index'])->name('pembeli');
 Route::get('/tambah-pembeli', [ManajemenPembeliController::class,'create'])->name('create-pembeli');
