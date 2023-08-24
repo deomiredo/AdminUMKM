@@ -21,69 +21,55 @@
 @section('content')
 <section class="content">
   <div class="container-fluid">
-    <!-- Small boxes (Stat box) -->
     <div class="row">
-      <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>150</h3>
+      <div class="col-12">
+        
+        <!-- /.card -->
 
-            <p>New Orders</p>
+        <div class="card">
+          <div class="card-header d-flex justify-content-between">
+            <h3 class="card-title">Data Pembeli dan Jumlah Transaksi</h3>
+            {{-- <a class="item-right ml-auto btn btn-success btn-sm" href="{{ route('create-pembeli') }}"> Tambah</a> --}}
           </div>
-          <div class="icon">
-            <i class="ion ion-bag"></i>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>NO</th>
+                <th>Nama Pembeli</th>
+                <th>Jumlah Transaksi Dibatalkan</th>
+                <th>Jumlah Transaksi Belum Dibayar</th>
+                <th>Jumlah Transaksi Menunggu Verifikasi</th>
+                <th>Jumlah Transaksi Selesai</th>
+              </tr>
+              </thead>
+              <tbody>
+                @foreach($transaksis as $transaksi)
+                @foreach ($pembelis as $pembeli)
+                    <tr>
+                      <td>{{$pembeli->id}}</td>
+                      <td>{{$pembeli->nama_lengkap}}</td>
+                      <td>{{$transaksi->status}}</td>
+                      {{-- <td>{{$pembeli->transaksi->status }}</td> --}}
+                      <td>{{$pembeli->password}}</td>
+                      <td>{{$pembeli->verifikasi}}</td>
+                      <td>0</td>
+                    </tr>
+                @endforeach
+                @endforeach
+              </tbody>
+              
+            </table>
           </div>
-          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          <!-- /.card-body -->
         </div>
+        <!-- /.card -->
       </div>
-      <!-- ./col -->
-      <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-success">
-          <div class="inner">
-            <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-            <p>Bounce Rate</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-stats-bars"></i>
-          </div>
-          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-      </div>
-      <!-- ./col -->
-      <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-warning">
-          <div class="inner">
-            <h3>44</h3>
-
-            <p>User Registrations</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-person-add"></i>
-          </div>
-          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-      </div>
-      <!-- ./col -->
-      <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-danger">
-          <div class="inner">
-            <h3>65</h3>
-
-            <p>Unique Visitors</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-pie-graph"></i>
-          </div>
-          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-      </div>
-      <!-- ./col -->
+      <!-- /.col -->
     </div>
+    <!-- /.row -->
   </div>
-</section>
+  <!-- /.container-fluid -->
+</section>  
 @endsection
