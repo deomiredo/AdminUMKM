@@ -13,7 +13,7 @@ class ManajemenPenjualController extends Controller
     {
         $penjuals = Penjual::all();
         
-        return view('penjual',compact('penjuals'));
+        return view('penjual.penjual',compact('penjuals'));
         // return view('penjual');
     }
 
@@ -26,7 +26,7 @@ class ManajemenPenjualController extends Controller
     {
         // $kategori_produks = KategoriProduk::all();
         // $penjuals = Penjual::all();
-        return view('create-penjual');
+        return view('penjual.create-penjual');
     }
 
     public function store(Request $request)
@@ -44,9 +44,6 @@ class ManajemenPenjualController extends Controller
                 'no_rekening' => 'required',
                 'atas_nama' => 'required',
                 'deskripsi' => 'required',
-                
-                // 'status' => ['required', Rule::in(Berita::$enumFields['status'])],
-                
             ],
             [
                 'logo.image' => 'File yang diupload harus bertipe Gambar: jpeg,png,jpg,gif,svg',
@@ -75,5 +72,59 @@ class ManajemenPenjualController extends Controller
             'deskripsi'=> $request->deskripsi
         ]);
         return redirect(route('penjual'))->with('success','Berhasil Menambahkan Penjual');
+    }
+
+    public function edit($id) {
+        $penjual = Penjual::find($id);
+
+        return view('penjual.edit-penjual',compact('penjual'));
+    }
+
+    function update($id, Request $request) {
+        $penjual = Penjual::find($id);
+
+        $validated = $request->validate(
+            [
+                'nama' => 'required',
+                'username' => 'required',
+                'no_hp' => 'required',
+                'pin' => 'required',
+                'logo' => 'image|mimes:jpeg,png,jpg,gif,svg',
+                'nama_toko' => 'required',
+                'nama_bank' => 'required',
+                'no_rekening' => 'required',
+                'atas_nama' => 'required',
+                'deskripsi' => 'required',
+            ],
+            [
+                'logo.image' => 'File yang diupload harus bertipe Gambar: jpeg,png,jpg,gif,svg',
+                'required'=>'Kolom Harus Di isi'
+                // pesan validasi lainnya
+            ],
+        );
+        if($request->file('logo'))
+        {
+            $pathFoto = str_replace(url('/storage'), '', $penjual->logo);
+            Storage::delete($pathFoto);
+
+            $gambar = $request->file('logo');
+            // dd($gambar);
+            $nama_file = Str::uuid() . '.' . $gambar->getClientOriginalExtension();
+            $path = $gambar->storeAs('images/penjual', $nama_file);
+            $url = Storage::url($path);
+            $penjual->update(['logo'=>$url]);  
+        }
+        $penjual->update([
+            'nama'=>$request->nama,
+            'username'=>$request->username,
+            'no_hp'=>$request->no_hp,
+            'pin'=>$request->pin,
+            'nama_toko'=> $request->nama_toko,
+            'nama_bank'=> $request->nama_bank,
+            'no_rekening'=> $request->no_rekening,
+            'atas_nama'=> $request->atas_nama,
+            'deskripsi'=> $request->deskripsi
+        ]);
+        return redirect(route('penjual'))->with('success','Berhasil Mengedit Penjual');
     }
 }
