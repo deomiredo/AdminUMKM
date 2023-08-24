@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreignId('id_kategori_produk')->constrained('kategori_produk');
             $table->foreignId('id_penjual')->constrained('penjual');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

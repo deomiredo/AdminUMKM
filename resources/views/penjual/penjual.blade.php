@@ -47,14 +47,15 @@
                                 <tbody>
                                     @foreach ($penjuals as $penjual)
                                         <tr>
-                                            <td>{{ $penjual->id }}</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $penjual->nama }}</td>
                                             <td>{{ $penjual->no_hp }}</td>
                                             <td>{{ $penjual->nama_toko }}</td>
                                             <td><a href="{{ $penjual->logo }}" target="_blank">lihat gambar</a> </td>
                                             <td>
                                               <a href="{{ route('edit-penjual',$penjual->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                                delete</td>
+                                              @include('penjual.delete-penjual') 
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -47,7 +47,7 @@
                         <tbody>
                             @foreach ($kategori_produks as $kategori_produk)
                                 <tr>
-                                    <td>{{ $kategori_produk->id }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $kategori_produk->nama_kategori }}</td>
                                     <td>
                                       <a href="{{ route('edit-kategori-produk',$kategori_produk->id) }}" class="btn btn-sm btn-warning">Edit</a>

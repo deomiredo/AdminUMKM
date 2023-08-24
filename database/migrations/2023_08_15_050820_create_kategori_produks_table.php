@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_kategori')->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
     

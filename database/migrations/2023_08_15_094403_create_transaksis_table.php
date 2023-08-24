@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('metode_pembayaran', ['cod', 'transfer bank']);
             $table->text('bukti')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

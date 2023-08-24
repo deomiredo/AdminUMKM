@@ -52,7 +52,7 @@ class ProdukController extends Controller
                 'id_penjual' => 'required',
                 'harga' => 'required',
                 // 'status' => ['required', Rule::in(Berita::$enumFields['status'])],
-                'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+                'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg',
             ],
             [
                 'gambar.image' => 'File yang diupload harus bertipe Gambar: jpeg,png,jpg,gif,svg',
@@ -62,11 +62,21 @@ class ProdukController extends Controller
         );
         // dd($request->gambar);
 
-        $gambar = $request->file('gambar');
-        // dd($gambar);
-        $nama_file = Str::uuid() . '.' . $gambar->getClientOriginalExtension();
-        $path = $gambar->storeAs('images/produk', $nama_file);
-        $url = Storage::url($path);
+        if($request->hasFile('gambar')){
+            $gambar = $request->file('gambar');
+            // dd($gambar);
+            $nama_file = Str::uuid() . '.' . $gambar->getClientOriginalExtension();
+            $path = $gambar->storeAs('images/produk', $nama_file);
+            $url = Storage::url($path);
+        }
+        else{
+            $url = asset('img/nopict.jpg');
+        }
+        // $gambar = $request->file('gambar');
+        // // dd($gambar);
+        // $nama_file = Str::uuid() . '.' . $gambar->getClientOriginalExtension();
+        // $path = $gambar->storeAs('images/produk', $nama_file);
+        // $url = Storage::url($path);
 
         $produk = Produk::create([
             'nama_produk'=>$request->nama_produk,
@@ -87,14 +97,14 @@ class ProdukController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        $produk = Produk::find($id);
+        $produk = Produk::findOrFail($id);
         $kategori_produks = KategoriProduk::all();
         return view('produk.edit-produk',compact('produk','kategori_produks'));
         
     }
 
     function update($id, Request $request) {
-        $produk = Produk::find($id);
+        $produk = Produk::findOrFail($id);
         
         $validated = $request->validate(
             [
@@ -124,6 +134,7 @@ class ProdukController extends Controller
             $produk->update(['gambar'=>$url]);  
         }
 
+
         $produk->update([
             'nama_produk'=>$request->nama_produk,
             'deskripsi'=>$request->deskripsi,
@@ -142,7 +153,7 @@ class ProdukController extends Controller
      */
     public function destroy($id)
     {
-        $produk = Produk::find($id);
+        $produk = Produk::findOrFail($id);
         $pathFoto = str_replace(url('/storage'), '', $produk->gambar);
         Storage::delete($pathFoto);
         $produk->delete();

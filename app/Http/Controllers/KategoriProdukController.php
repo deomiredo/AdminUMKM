@@ -42,14 +42,14 @@ class KategoriProdukController extends Controller
     }
 
     public function edit($id) {
-        $kategori_produk = KategoriProduk::find($id);
+        $kategori_produk = KategoriProduk::findOrFail($id);
 
         return view('produk.edit-kategori-produk',compact('kategori_produk'));
         
     }
 
     function update($id, Request $request) {
-        $kategoriProduk = KategoriProduk::find($id);
+        $kategoriProduk = KategoriProduk::findOrFail($id);
         $request->validate([
             'nama_kategori' => 'required|unique:kategori_produk,nama_kategori,'.$id
         ], [
@@ -64,7 +64,7 @@ class KategoriProdukController extends Controller
     }
 
     function destroy($id) {
-        $kategoriProduk = KategoriProduk::find($id);
+        $kategoriProduk = KategoriProduk::findOrFail($id);
         $kategoriProduk->produks()->delete();
         $kategoriProduk->delete();
         return redirect(route('kategori-produk'))->with('success', 'Berhasil Menghapus Kategori Produk');

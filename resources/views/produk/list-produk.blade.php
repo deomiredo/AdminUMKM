@@ -50,7 +50,7 @@
                         <tbody>
                             @foreach ($produks as $produk)
                                 <tr>
-                                    <td>{{ $produk->id }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $produk->nama_produk }}</td>
                                     <td><a href="{{$produk->gambar}}" target="_blank">lihat gambar</a> </td>
                                     <td>{{ $produk->kategori->nama_kategori }}</td>

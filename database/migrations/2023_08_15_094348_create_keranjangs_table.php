@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('total');
             $table->foreignId('id_pembeli')->constrained('pembeli');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

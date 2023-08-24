@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('komentar')->nullable();
             $table->integer('penilaian') -> max (5);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

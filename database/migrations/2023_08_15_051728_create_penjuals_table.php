@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('atas_nama');
             $table->longText('deskripsi')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

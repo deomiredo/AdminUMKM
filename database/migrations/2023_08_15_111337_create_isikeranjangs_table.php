@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('id_produk')->constrained('produk');
             $table->integer('banyak_produk');
             $table->timestamps();
+            $table->softDeletes();  
         });
     }
 

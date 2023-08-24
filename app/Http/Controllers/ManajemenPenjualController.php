@@ -38,7 +38,7 @@ class ManajemenPenjualController extends Controller
                 'username' => 'required',
                 'no_hp' => 'required',
                 'pin' => 'required',
-                'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+                'logo' => 'image|mimes:jpeg,png,jpg,gif,svg',
                 'nama_toko' => 'required',
                 'nama_bank' => 'required',
                 'no_rekening' => 'required',
@@ -53,11 +53,21 @@ class ManajemenPenjualController extends Controller
         );
         // dd($request->gambar);
 
-        $logo = $request->file('logo');
-        // dd($gambar);
-        $nama_file = Str::uuid() . '.' . $logo->getClientOriginalExtension();
-        $path = $logo->storeAs('images/penjual', $nama_file);
-        $url = Storage::url($path);
+        if($request->hasFile('logo')){
+            $logo = $request->file('logo');
+            // dd($gambar);
+            $nama_file = Str::uuid() . '.' . $logo->getClientOriginalExtension();
+            $path = $logo->storeAs('images/penjual', $nama_file);
+            $url = Storage::url($path);
+        }
+        else{
+            $url = asset('img/nopict.jpg');
+        }
+        // $logo = $request->file('logo');
+        // // dd($gambar);
+        // $nama_file = Str::uuid() . '.' . $logo->getClientOriginalExtension();
+        // $path = $logo->storeAs('images/penjual', $nama_file);
+        // $url = Storage::url($path);
 
         $penjual = Penjual::create([
             'nama'=>$request->nama,
@@ -75,13 +85,13 @@ class ManajemenPenjualController extends Controller
     }
 
     public function edit($id) {
-        $penjual = Penjual::find($id);
+        $penjual = Penjual::findOrFail($id);
 
         return view('penjual.edit-penjual',compact('penjual'));
     }
 
     function update($id, Request $request) {
-        $penjual = Penjual::find($id);
+        $penjual = Penjual::findOrFail($id);
 
         $validated = $request->validate(
             [
@@ -127,4 +137,13 @@ class ManajemenPenjualController extends Controller
         ]);
         return redirect(route('penjual'))->with('success','Berhasil Mengedit Penjual');
     }
+
+    function destroy($id) {
+        $penjual = Penjual::findOrFail($id);
+        $pathFoto = str_replace(url('/storage'), '', $penjual->logo);
+        Storage::delete($pathFoto);
+        $penjual->produks()->delete();
+        $penjual->delete();
+    }
+
 }

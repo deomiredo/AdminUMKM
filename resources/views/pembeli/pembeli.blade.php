@@ -47,12 +47,15 @@
               <tbody>
                 @foreach ($pembelis as $pembeli)
                     <tr>
-                      <td>{{$pembeli->id}}</td>
+                      <td>{{$loop->iteration}}</td>
                       <td>{{$pembeli->nama_lengkap}}</td>
                       <td>{{$pembeli->no_hp}}</td>
                       <td>{{$pembeli->password}}</td>
                       <td>{{$pembeli->verifikasi}}</td>
-                      <td>update delete</td>
+                      <td>
+                        <a href="{{ route('edit-pembeli',$pembeli->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                        @include('pembeli.delete-pembeli') 
+                      </td>
                     </tr>
                 @endforeach
               </tbody>

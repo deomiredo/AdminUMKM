@@ -44,8 +44,11 @@ Route::put('/manajemen-penjual/{id}/edit-penjual', [ManajemenPenjualController::
 Route::delete('/manajemen-penjual/{id}/hapus-penjual', [ManajemenPenjualController::class,'destroy'])->name('destroy-penjual');
 
 Route::get('/manajemen-pembeli',[ManajemenPembeliController::class,'index'])->name('pembeli');
-Route::get('/tambah-pembeli', [ManajemenPembeliController::class,'create'])->name('create-pembeli');
-Route::post('/tambah-pembeli', [ManajemenPembeliController::class,'store'])->name('store-pembeli');
+Route::get('/manajemen-penjual/tambah-pembeli', [ManajemenPembeliController::class,'create'])->name('create-pembeli');
+Route::post('/manajemen-penjual/tambah-pembeli', [ManajemenPembeliController::class,'store'])->name('store-pembeli');
+Route::get('/manajemen-penjual/{id}/edit-pembeli', [ManajemenPembeliController::class,'edit'])->name('edit-pembeli');
+Route::put('/manajemen-penjual/{id}/edit-pembeli', [ManajemenPembeliController::class,'update'])->name('update-pembeli');
+Route::delete('/manajemen-penjual/{id}/delete-pembeli', [ManajemenPembeliController::class,'destroy'])->name('destroy-pembeli');
 
 Route::get('/statistik-penjualan',[StatistikPenjualanController::class,'index'])->name('statistik-penjualan');
 Route::get('/statistik-pembeli-penjual',[StatistikPembeliPenjualController::class,'index'])->name('statistik-pembeli-penjual');
