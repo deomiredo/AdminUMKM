@@ -11,8 +11,7 @@ class AnalitikPelangganController extends Controller
     public function index()
     {
         $pembelis = Pembeli::all();
-        $transaksis = Transaksi::all();
-        return view('statistik.analitik-pelanggan',compact('pembelis', 'transaksis'));
+        return view('statistik.analitik-pelanggan',compact('pembelis'));
 
         // return view('pembeli');
     }

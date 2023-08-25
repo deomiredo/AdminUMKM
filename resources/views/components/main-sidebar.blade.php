@@ -36,15 +36,15 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{route('home')}}" class="nav-link active">
+            <a href="{{route('home')}}" class="nav-link @if(request()->is('/')) active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard  
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item @if(request()->is('produk*','kategori-produk*')) menu-open @endif">
+            <a href="#" class="nav-link @if(request()->is('produk*','kategori-produk*')) active @endif">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Manajemen Produk
@@ -54,7 +54,7 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('list-produk')}}" class="nav-link">
+                  <a href="{{route('list-produk')}}" class="nav-link @if(request()->is('produk*')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
                     <p>List Produk</p>
                   </a>
@@ -62,7 +62,7 @@
             </ul>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('kategori-produk')}}" class="nav-link">
+                  <a href="{{route('kategori-produk')}}" class="nav-link @if(request()->is('kategori-produk*')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Kategori Produk</p>
                   </a>
@@ -70,7 +70,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="{{route('penjual')}}" class="nav-link">
+            <a href="{{route('penjual')}}" class="nav-link @if(request()->is('manajemen-penjual*')) active @endif">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Manajemen Penjual
@@ -78,15 +78,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('pembeli')}}" class="nav-link">
+            <a href="{{route('pembeli')}}" class="nav-link @if(request()->is('manajemen-pembeli*')) active @endif">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Manajemen Pembeli
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item @if(request()->is('statistik-penjual*','statistik-pembeli-penjual*','analitik-pelanggan*')) menu-open @endif">
+            <a href="#" class="nav-link @if(request()->is('statistik-penjual*','statistik-pembeli-penjual*','analitik-pelanggan*')) active @endif">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Statistik dan Laporan
@@ -95,7 +95,7 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('statistik-penjualan')}}" class="nav-link">
+                  <a href="{{route('statistik-penjualan')}}" class="nav-link @if(request()->is('statistik-penjual*')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Statistik Penjualan</p>
                   </a>
@@ -103,7 +103,7 @@
             </ul>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('statistik-pembeli-penjual')}}" class="nav-link">
+                  <a href="{{route('statistik-pembeli-penjual')}}" class="nav-link @if(request()->is('statistik-pembeli-penjual*')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Statistik Pembeli dan Penjual</p>
                   </a>
@@ -111,7 +111,7 @@
             </ul>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('analitik-pelanggan')}}" class="nav-link">
+                  <a href="{{route('analitik-pelanggan')}}" class="nav-link @if(request()->is('analitik-pelanggan*')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Analitik Pelanggan</p>
                   </a>

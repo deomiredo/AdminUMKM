@@ -16,4 +16,13 @@ class Pembeli extends Model
     function keranjang (){
         return $this->hasMany(Keranjang::class,'id_pembeli');
     }
+    public function transaksi()
+    {
+        return $this->hasManyThrough(Transaksi::class, Keranjang::class,'id_pembeli','id_keranjang');
+    }
+
+    public function jumlahTransaksiByStatus($status)
+    {
+        return $this->transaksi()->where('status', $status)->count();
+    }
 }

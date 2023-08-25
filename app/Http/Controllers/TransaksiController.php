@@ -14,7 +14,7 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $transaksis = Transaksi::all();
+       
         // dd($produk);
         return view('statistik.analitik-pelanggan', compact('transaksis'));
     }

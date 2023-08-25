@@ -12,4 +12,8 @@ class Keranjang extends Model
     protected $table= 'keranjang';
 
     protected $guarded = [];
+
+    function transaksis() {
+        return $this->hasOne(Transaksi::class,'id_keranjang');
+    }
 }

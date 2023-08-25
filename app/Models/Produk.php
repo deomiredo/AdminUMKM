@@ -20,4 +20,6 @@ class Produk extends Model
     function kategori() {
         return $this->belongsTo(KategoriProduk::class,'id_kategori_produk');
     }
+
+    
 }

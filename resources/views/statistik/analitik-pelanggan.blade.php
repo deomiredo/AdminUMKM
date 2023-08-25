@@ -45,19 +45,20 @@
               </tr>
               </thead>
               <tbody>
-                @foreach($transaksis as $transaksi)
+                
                 @foreach ($pembelis as $pembeli)
                     <tr>
                       <td>{{$pembeli->id}}</td>
                       <td>{{$pembeli->nama_lengkap}}</td>
-                      <td>{{$transaksi->status}}</td>
+                      <td>{{$pembeli->jumlahTransaksiByStatus('dibatalkan')}}</td>
                       {{-- <td>{{$pembeli->transaksi->status }}</td> --}}
-                      <td>{{$pembeli->password}}</td>
-                      <td>{{$pembeli->verifikasi}}</td>
-                      <td>0</td>
+                      <td>{{$pembeli->jumlahTransaksiByStatus('belum dibayar')}}</td>
+                      <td>{{$pembeli->jumlahTransaksiByStatus('menunggu verifikasi')}}</td>
+                      <td>{{$pembeli->jumlahTransaksiByStatus('selesai')}}</td>
+                      
                     </tr>
                 @endforeach
-                @endforeach
+                
               </tbody>
               
             </table>
