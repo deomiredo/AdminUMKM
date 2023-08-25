@@ -50,5 +50,11 @@
           <i class="fas fa-th-large"></i>
         </a>
       </li>
+      <li class="nav-item">
+        <form action="{{ route('logout') }}" method="POST">
+          @csrf
+          <button class="btn btn-sm btn-warning" type="submit">Logout</button>
+        </form>
+      </li>
     </ul>
   </nav>
