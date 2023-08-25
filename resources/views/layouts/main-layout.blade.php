@@ -38,9 +38,9 @@
 <div class="wrapper">
 
   <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
+  {{-- <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+  </div> --}}
 
   <!-- Navbar -->
   @include('components.navbar')
@@ -139,7 +139,7 @@
 <!-- AdminLTE App -->
 <script src="{{asset('admin')}}/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{asset('admin')}}/dist/js/demo.js"></script>
+{{-- <script src="{{asset('admin')}}/dist/js/demo.js"></script> --}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('admin')}}/dist/js/pages/dashboard.js"></script>
 <script>

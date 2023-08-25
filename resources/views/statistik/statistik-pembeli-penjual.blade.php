@@ -29,7 +29,7 @@
 
           <div class="info-box-content">
             <span class="info-box-text">Jumlah Pembeli</span>
-            <span class="info-box-number">760</span>
+            <span class="info-box-number">{{$pembeli}}</span>
           </div>
           <!-- /.info-box-content -->
         </div>
@@ -42,7 +42,7 @@
 
           <div class="info-box-content">
             <span class="info-box-text">Jumlah Penjual</span>
-            <span class="info-box-number">200</span>
+            <span class="info-box-number">{{$penjual}}</span>
           </div>
           <!-- /.info-box-content -->
         </div>
@@ -58,7 +58,7 @@
 
           <div class="info-box-content">
             <span class="info-box-text">Total Seluruh Penjualan</span>
-            <span class="info-box-number">1000</span>
+            <span class="info-box-number">{{$transaksi}}</span>
           </div>
           <!-- /.info-box-content -->
         </div>
