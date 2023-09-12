@@ -1,10 +1,10 @@
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    {{-- <a href="index3.html" class="brand-link">
       <img src="{{asset('admin')}}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="font-weight-light h6">UMKM DESA TAMIAJENG</span>
-    </a>
+    </a> --}}
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -14,7 +14,7 @@
           <img src="{{asset('admin')}}/dist/img/Lambang_Kabupaten_Mojokerto.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Admin UMKM</a>
+          <a href="#" class="d-block">Admin UMKM Tamiajeng</a>
         </div>
       </div>
 
@@ -45,7 +45,7 @@
           </li>
           <li class="nav-item @if(request()->is('produk*','kategori-produk*')) menu-open @endif">
             <a href="#" class="nav-link @if(request()->is('produk*','kategori-produk*')) active @endif">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-book"></i>
               <p>
                 Manajemen Produk
                 {{-- <span class="right badge badge-danger">New</span> --}}
@@ -71,7 +71,7 @@
           </li>
           <li class="nav-item">
             <a href="{{route('penjual')}}" class="nav-link @if(request()->is('manajemen-penjual*')) active @endif">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon far fa-plus-square"></i>
               <p>
                 Manajemen Penjual
               </p>
@@ -79,7 +79,7 @@
           </li>
           <li class="nav-item">
             <a href="{{route('pembeli')}}" class="nav-link @if(request()->is('manajemen-pembeli*')) active @endif">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 Manajemen Pembeli
               </p>
@@ -87,7 +87,7 @@
           </li>
           <li class="nav-item @if(request()->is('statistik-penjual*','statistik-pembeli-penjual*','analitik-pelanggan*')) menu-open @endif">
             <a href="#" class="nav-link @if(request()->is('statistik-penjual*','statistik-pembeli-penjual*','analitik-pelanggan*')) active @endif">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Statistik dan Laporan
                 <i class="fas fa-angle-left right"></i>

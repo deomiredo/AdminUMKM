@@ -31,6 +31,7 @@ class ManajemenPembeliController extends Controller
         $validated = $request->validate(
             [
                 'nama_lengkap' => 'required',
+                'alamat' => 'required',
                 'username' => 'required|unique:pembeli,username',
                 'no_hp' => 'required|unique:pembeli,no_hp',
                 'password' => 'required',
@@ -62,6 +63,7 @@ class ManajemenPembeliController extends Controller
 
         $pembeli = Pembeli::create([
             'nama_lengkap'=>$request->nama_lengkap,
+            'alamat'=> $request->alamat,
             'username'=>$request->username,
             'no_hp'=>$request->no_hp,
             'password'=>$request->password,
@@ -86,6 +88,7 @@ class ManajemenPembeliController extends Controller
         $validated = $request->validate(
             [
                 'nama_lengkap' => 'required',
+                'alamat' => 'required',
                 'username' => 'required|unique:pembeli,username,'.$pembeli->id,
                 'no_hp' => 'required|unique:pembeli,no_hp,'.$pembeli->id,
                 'password' => 'required',
@@ -112,6 +115,7 @@ class ManajemenPembeliController extends Controller
         }
         $pembeli->update([
             'nama_lengkap'=>$request->nama_lengkap,
+            'alamat'=> $request->alamat,
             'username'=>$request->username,
             'no_hp'=>$request->no_hp,
             'password'=>$request->password,

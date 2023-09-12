@@ -92,9 +92,9 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </div>
@@ -102,11 +102,11 @@
                     <div class="tab-content p-0">
 
                         <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
-                            <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
+                            <canvas id="transaksi-chart-canvas" height="300" style="height: 300px;"></canvas>
                         </div>
-                        <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                        {{-- <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
                             <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -562,3 +562,66 @@
 
     </div>
 @endsection
+
+@section('js')
+<script>
+    var transaksiChartCanvas = document.getElementById('transaksi-chart-canvas').getContext('2d')
+  // $('#revenue-chart').get(0).getContext('2d');
+
+  var transaksi = @php echo json_encode($transaksi); @endphp;
+  
+  var transaksiChartData = {
+    labels: transaksi['label-tanggal'],
+    datasets: [
+      {
+        label: 'Digital Goods',
+        backgroundColor: 'rgba(60,141,188,0.9)',
+        borderColor: 'rgba(60,141,188,0.8)',
+        pointRadius: false,
+        pointColor: '#3b8bba',
+        pointStrokeColor: 'rgba(60,141,188,1)',
+        pointHighlightFill: '#fff',
+        pointHighlightStroke: 'rgba(60,141,188,1)',
+        data: transaksi['jumlah-transaksi']
+      },
+    //   {
+    //     label: 'Electronics',
+    //     backgroundColor: 'rgba(210, 214, 222, 1)',
+    //     borderColor: 'rgba(210, 214, 222, 1)',
+    //     pointRadius: false,
+    //     pointColor: 'rgba(210, 214, 222, 1)',
+    //     pointStrokeColor: '#c1c7d1',
+    //     pointHighlightFill: '#fff',
+    //     pointHighlightStroke: 'rgba(220,220,220,1)',
+    //     data: [65, 59, 80, 81, 56, 55, 40]
+    //   }
+    ]
+  }
+  var transaksiChartOptions = {
+    maintainAspectRatio: false,
+    responsive: true,
+    legend: {
+      display: false
+    },
+    scales: {
+      xAxes: [{
+        gridLines: {
+          display: false
+        }
+      }],
+      yAxes: [{
+        gridLines: {
+          display: false
+        }
+      }]
+    }
+  }
+
+  var salesChart = new Chart(transaksiChartCanvas, { // lgtm[js/unused-local-variable]
+    type: 'line',
+    data: transaksiChartData,
+    options: transaksiChartOptions
+  })
+</script>
+@endsection
+

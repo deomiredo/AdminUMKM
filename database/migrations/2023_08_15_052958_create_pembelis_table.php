@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('no_hp')->unique();
             $table->string('password');
+            $table->string('alamat');
             $table->enum('verifikasi', ['true', 'false']);
             $table->text('foto')->nullable();
             $table->longText('deskripsi')->nullable();

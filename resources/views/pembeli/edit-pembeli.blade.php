@@ -73,6 +73,17 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="nama_lengkap" class="col-sm-2 col-form-label">Alamat</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="Masukan Alamat" name="alamat" value="{{ old('alamat',$pembeli->alamat) }}" required>
+                                @error('nama_lengkap')
+                                    <small class="text-danger">
+                                        {{ $message }}
+                                    </small>
+                                @enderror
+                            </div>
+                        </div>
                         {{-- <div class="form-group row">
                             <label for="nama_produk" class="col-sm-2 col-form-label">Gambar Produk</label>
                             <div class="col-sm-10">

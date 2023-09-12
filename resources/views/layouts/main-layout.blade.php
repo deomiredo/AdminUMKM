@@ -93,6 +93,7 @@
 </div>
 <!-- ./wrapper -->
 
+
 <!-- jQuery -->
 <script src="{{asset('admin')}}/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -146,8 +147,9 @@
   $(function () {
       //Initialize Select2 Elements
       $('.select2').select2();
+      $('#summernote').summernote()
   });
 </script>
-@yield('script')
+@yield('js')
 </body>
 </html>

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('no_hp')->unique();
             $table->string('pin');
+            $table->string('alamat');
             $table->text('logo');
             $table->string('nama_toko')->unique();
             $table->string('nama_bank');

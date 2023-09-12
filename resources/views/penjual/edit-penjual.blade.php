@@ -183,6 +183,17 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="Masukan Alamat" name="alamat" value="{{ old('alamat',$penjual->alamat) }}">
+                            @error('alamat')
+                                <small class="text-danger">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="nama_bank" class="col-sm-2 col-form-label">Nama Bank</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" placeholder="Masukan Nama bank" name="nama_bank" value="{{ old('nama_bank',$penjual->nama_bank) }}">
