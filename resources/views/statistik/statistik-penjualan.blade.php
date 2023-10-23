@@ -89,7 +89,7 @@
         <!-- small box -->
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>{{ 'Rp ' . number_format($total, 2, ',', '.') }}</h3>
+            <h3>{{ 'Rp ' . number_format($avg, 2, ',', '.') }}</h3>
 
             <p>Rata Rata Nilai Transaksi Selesai</p>
           </div>

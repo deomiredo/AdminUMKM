@@ -14,4 +14,9 @@ class ProdukAPIController extends Controller
         return response()->json(['data' => $produk]);
 
     }
+
+    function random() {
+        $produk = Produk::inRandomOrder()->get();
+        return response()->json(['data' => $produk]);
+    }
 }

@@ -11,11 +11,13 @@ class StatistikPenjualanController extends Controller
     {
         $transaksis = Transaksi::all();
         $total = 0;
-        foreach($transaksis->where('status','selesai') as $item){
+        $items = $transaksis->where('status','selesai');
+        foreach($items as $item){
             $total = $total+ $item->total;
         }
+        $avg = $total/(count($items)>0 ?count($items):1);
         // dd($total);
         // dd($transaksis->where('status','dibatalkan'));
-        return view('statistik.statistik-penjualan',compact('transaksis','total'));
+        return view('statistik.statistik-penjualan',compact('transaksis','avg'));
     }
 }
