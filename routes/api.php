@@ -4,6 +4,7 @@ use App\Http\Controllers\KategoriProdukAPIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukAPIController;
+use App\Http\Controllers\AuthAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,8 @@ use App\Http\Controllers\ProdukAPIController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('/register', [AuthAPIController::class, 'register'])->name('register');
 
 Route::get('/produk', [ProdukAPIController::class, 'index'])->name('list-produk');
 Route::get('/random-produk', [ProdukAPIController::class, 'random']);
