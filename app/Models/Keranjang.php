@@ -16,4 +16,8 @@ class Keranjang extends Model
     function transaksis() {
         return $this->hasOne(Transaksi::class,'id_keranjang');
     }
+
+    function produk() {
+        return $this->belongsTo(Produk::class,'id_produk');
+    }
 }

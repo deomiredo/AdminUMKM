@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pembeli', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_lengkap')->unique();
+            $table->string('nama_lengkap');
             $table->string('username')->unique();
             $table->string('no_hp')->unique();
             $table->string('password');

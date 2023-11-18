@@ -124,6 +124,7 @@ class ProdukController extends Controller
 
         if($request->file('gambar')){
             $pathFoto = str_replace(url('/storage'), '', $produk->gambar);
+            // dd($pathFoto);
             Storage::delete($pathFoto);
 
             $gambar = $request->file('gambar');
