@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('keranjang', function (Blueprint $table) {
             $table->id();
-            $table->decimal('total');
             $table->foreignId('id_pembeli')->constrained('pembeli');
             $table->foreignId('id_produk')->nullable()->constrained('produk');
             $table->integer('banyak_produk')->nullable();

@@ -11,5 +11,8 @@ class Komentar extends Model
     use HasFactory,SoftDeletes;
     protected $table= 'komentar';
 
+    public function pembeli(){
+        return $this -> belongsTo(Pembeli::class, 'id_pembeli');
+    }
     protected $guarded = [];
 }

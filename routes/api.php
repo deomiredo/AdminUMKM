@@ -29,9 +29,12 @@ Route::post('/profile-pembeli/{id}',[PembeliApiController::class,'editProfile'])
 Route::get('/produk', [ProdukAPIController::class, 'index'])->name('list-produk');
 Route::get('/category-produk/{id}', [ProdukAPIController::class, 'categoryProduk']);
 Route::get('/more-produk-penjual/{id}', [ProdukAPIController::class, 'moreProduk']);
+Route::get('/produk/{id}/komentar', [ProdukAPIController::class, 'komentar']);
+
 
 Route::get('/lihat-keranjang/{id}', [KeranjangAPIController::class, 'getCart']);
 Route::post('/tambah-keranjang', [KeranjangAPIController::class, 'addCart']);
+Route::delete('/hapus-keranjang/{id}', [KeranjangAPIController::class, 'deleteCart']);
 
 
 Route::get('/produk/search', [ProdukAPIController::class, 'searchProduk']);
