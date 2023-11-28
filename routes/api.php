@@ -24,7 +24,7 @@ Route::post('/login', [AuthAPIController::class, 'login']);
 
 
 Route::get('/profile-pembeli/{id}',[PembeliApiController::class,'profile']);
-Route::put('/profile-pembeli/{id}',[PembeliApiController::class,'editProfile']);
+Route::post('/profile-pembeli/{id}',[PembeliApiController::class,'editProfile']);
 
 Route::get('/produk', [ProdukAPIController::class, 'index'])->name('list-produk');
 Route::get('/category-produk/{id}', [ProdukAPIController::class, 'categoryProduk']);

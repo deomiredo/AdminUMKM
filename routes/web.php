@@ -10,6 +10,12 @@ use App\Http\Controllers\StatistikPenjualanController;
 use App\Http\Controllers\StatistikPembeliPenjualController;
 use App\Http\Controllers\AnalitikPelangganController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Penjual\AuthController;
+use App\Http\Controllers\Penjual\HomeController as PenjualHomeController;
+use App\Http\Controllers\Penjual\KomentardanPenilaianController;
+use App\Http\Controllers\Penjual\ManagementPesananController;
+use App\Http\Controllers\Penjual\ProdukController as PenjualProdukController;
+use App\Models\Produk;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,15 +28,38 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::middleware(['guest'])->group(function(){
+Route::middleware(['guest:admin,penjual'])->group(function(){
     Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::post('/login', [LoginController::class, 'authenticate'])->name('auth');
-
+    Route::get('login/penjual', [AuthController::class,'login'])->name('login.penjual');
+    Route::post('login/penjual', [AuthController::class,'auth'])->name('auth.penjual');
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])
     ->name('logout')
     ->middleware('logout');
+
+Route::middleware(['penjual'])->group(function(){
+    
+    Route::prefix('penjual')->group(function(){
+        Route::get('/dashboard',[PenjualHomeController::class,'index'])->name('penjual.dashboard');
+        
+        Route::prefix('manajemen-produk')->group(function(){
+            Route::get('/',[PenjualProdukController::class,'index'])->name('penjual.produk.index');
+            Route::get('/tambah-produk',[PenjualProdukController::class,'create'])->name('penjual.produk.create');
+            Route::post('/tambah-produk',[PenjualProdukController::class,'store'])->name('penjual.produk.store');
+            Route::get('/edit-produk/{produk}',[PenjualProdukController::class,'edit'])->name('penjual.produk.edit');
+            Route::put('/edit-produk/{produk}',[PenjualProdukController::class,'update'])->name('penjual.produk.update');
+            Route::delete('/hapus-produk/{produk}',[PenjualProdukController::class,'destroy'])->name('penjual.produk.destroy');
+        });
+        Route::prefix('manajemen-pesanan')->group(function(){
+            Route::get('/',[ManagementPesananController::class,'index'])->name('penjual.pesanan.index');
+        });
+        Route::prefix('komentar-dan-penilaian')->group(function(){
+            Route::get('/',[KomentardanPenilaianController::class,'index'])->name('penjual.komentar.index');
+        });
+    });
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [HomeController::class, 'home'])->name('home');

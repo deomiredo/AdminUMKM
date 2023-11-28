@@ -47,7 +47,12 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  @include('components.main-sidebar')
+  @auth('penjual')
+    @include('client.component.main-sidebar')
+  @endauth
+  @auth
+    @include('components.main-sidebar')
+  @endauth
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

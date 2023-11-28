@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class LogoutMiddleware
+class RedirectIfNotPenjual
 {
     /**
      * Handle an incoming request.
@@ -16,11 +17,9 @@ class LogoutMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user('admin')||$request->user('penjual')) {
+        if(auth('penjual')->check()){
             return $next($request);
         }
-
-        // Jika tidak memenuhi kondisi, bisa diarahkan ke halaman tertentu atau melakukan tindakan lain
-        abort(403, 'Unauthorized');
+        return redirect()->route('login.penjual');
     }
 }

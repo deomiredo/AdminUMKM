@@ -19,7 +19,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b>Login Admin UMKM</a>
+            <a href="#"><b>Login Penjual UMKM</a>
         </div>
         @if (session()->has('message'))
                 <div class="col mb-3">
@@ -33,28 +33,28 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
-                <form action="{{ route('auth') }}" method="post">
+                <form action="{{ route('auth.penjual') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control " placeholder="Username" name="name">
+                        <input type="text" class="form-control " placeholder="Username" name="username">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
                     </div>
-                    @error('name')
+                    @error('username')
                         <span class="text-danger error">{{ $message }}</span>
                     @enderror
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password" name="password">
+                        <input type="password" class="form-control" placeholder="PIN" name="pin">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
-                    @error('password')
+                    @error('pin')
                         <span class="text-danger error">{{ $message }}</span>
                     @enderror
                     <div class="row">
@@ -62,10 +62,10 @@
                             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                         </div>
                         <div class="col-12">
-                            <a href="{{ route('login.penjual') }}" class="btn btn-white btn-block">Login Penjual</a>
+                            <a href="{{ route('login') }}" class="btn btn-white btn-block">Login Admin</a>
                         </div>
+
                     </div>
-                    
                 </form>
 
             </div>

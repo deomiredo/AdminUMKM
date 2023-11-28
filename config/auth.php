@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'admin',
         'passwords' => 'users',
     ],
 
@@ -29,16 +29,20 @@ return [
     |
     | All authentication drivers have a user provider. This defines how the
     | users are actually retrieved out of your database or other storage
-    | mechanisms used by this application to persist your user's data.
+    | mechanisms used by this appication to persist your user's data.
     |
     | Supported: "session"
     |
     */
 
     'guards' => [
-        'web' => [
+        'admin' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+        'penjual' => [
+            'driver' => 'session',
+            'provider' => 'penjual',
         ],
     ],
 
@@ -63,6 +67,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'penjual' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Penjual::class,
         ],
 
         // 'users' => [

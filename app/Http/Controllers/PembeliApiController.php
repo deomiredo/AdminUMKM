@@ -22,6 +22,8 @@ class PembeliApiController extends Controller
         // }
         // return response()->json(['data' => $request->nama_lengkap,'message'=>'berhasil foto update akun']);
         // $pembeli = Pembeli::findOrFail($id);
+        
+
         $validated = $request->validate(
             [
                 'nama_lengkap' => 'required',
@@ -29,7 +31,7 @@ class PembeliApiController extends Controller
                 'username' => 'required|unique:pembeli,username,'.$pembeli->id,
                 'no_hp' => 'required|unique:pembeli,no_hp,'.$pembeli->id,
                 'password' => 'required',
-                'foto' => 'image|mimes:jpeg,png,jpg,gif,svg',
+                'foto' => 'mimes:jpeg,png,jpg,gif,svg',
                 'deskripsi' => 'required',
                 
                 // 'status' => ['required', Rule::in(Berita::$enumFields['status'])],
@@ -50,6 +52,7 @@ class PembeliApiController extends Controller
             $url = Storage::url($path);
             $pembeli->update(['foto'=>$url]);
         }
+        dd($request->username, $request->foto);
         $pembeli->update([
             'nama_lengkap'=>$request->nama_lengkap,
             'alamat'=> $request->alamat,
