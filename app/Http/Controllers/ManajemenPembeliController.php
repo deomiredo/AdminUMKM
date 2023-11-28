@@ -71,10 +71,10 @@ class ManajemenPembeliController extends Controller
             'foto'=>$url,
             'deskripsi'=> $request->deskripsi
         ]);
-        Keranjang::create([
-            'total'=>0,
-            'id_pembeli'=>$pembeli->id,
-        ]);
+        // Keranjang::create([
+        //     'total'=>0,
+        //     'id_pembeli'=>$pembeli->id,
+        // ]);
         return redirect(route('pembeli'))->with('success','Berhasil Menambahkan Pembeli');
     }
 

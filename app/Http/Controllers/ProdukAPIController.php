@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Komentar;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 
@@ -59,4 +60,10 @@ class ProdukAPIController extends Controller
 
         return response()->json(['data' => $result]);
     }
+    public function komentar($id){
+        $produk = Produk::find($id);
+        $komentar = Komentar::with ('pembeli')->where ('id_produk', $id)->get();
+        return response()->json(['data' => $komentar]);
+    }
+
 }
