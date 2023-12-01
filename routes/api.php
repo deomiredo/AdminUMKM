@@ -34,7 +34,8 @@ Route::get('/produk/{id}/komentar', [ProdukAPIController::class, 'komentar']);
 
 Route::get('/lihat-keranjang/{id}', [KeranjangAPIController::class, 'getCart']);
 Route::post('/tambah-keranjang', [KeranjangAPIController::class, 'addCart']);
-Route::delete('/hapus-keranjang/{id}', [KeranjangAPIController::class, 'deleteCart']);
+Route::put('/update-keranjang/{id}', [KeranjangAPIController::class, 'deleteCart']);
+Route::delete('/delete-produk-keranjang/{id}', [KeranjangAPIController::class, 'deleteProdukCart']);
 
 
 Route::get('/produk/search', [ProdukAPIController::class, 'searchProduk']);

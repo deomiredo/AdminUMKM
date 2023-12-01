@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Penjual;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
 class ManagementPesananController extends Controller
@@ -14,7 +15,10 @@ class ManagementPesananController extends Controller
      */
     public function index()
     {
-        //
+        $transaksi = auth('penjual')->user();
+        dd($transaksi->produks);
+       
+        return view("client.pesanan.index",compact("transaksi"));
     }
 
     /**

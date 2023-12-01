@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_keranjang')->constrained('keranjang');
-            $table->decimal('total');
+            $table->decimal('total_harga');
             $table->enum('status',['dibatalkan', 'belum dibayar', 'menunggu verifikasi', 'selesai']);
             $table->enum('metode_pembayaran', ['cod', 'transfer bank']);
             $table->text('bukti')->nullable();

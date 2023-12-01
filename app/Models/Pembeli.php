@@ -14,7 +14,7 @@ class Pembeli extends Model
     protected $guarded = [];
 
     function keranjang (){
-        return $this->hasMany(Keranjang::class,'id_pembeli');
+        return $this->hasOne(Keranjang::class,'id_pembeli');
     }
     public function transaksi()
     {

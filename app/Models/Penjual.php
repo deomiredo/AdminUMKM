@@ -24,6 +24,8 @@ class Penjual extends Authenticatable
 
     function produks()
     {
-        return $this->hasMany(Produk::class, 'id_kategori_produk');
+        return $this->hasMany(Produk::class, 'id_produk');
     }
+
+    
 }
