@@ -24,6 +24,6 @@ class Keranjang extends Model
 
     public function produk()
     {
-        return $this->belongsToMany(Produk::class, 'keranjang_produk','id_keranjang','id_produk')->withPivot('jumlah');
+        return $this->belongsToMany(Produk::class, 'keranjang_produk','id_keranjang','id_produk')->withPivot('id','jumlah');
     }
 }
