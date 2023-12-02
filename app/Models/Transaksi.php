@@ -14,7 +14,7 @@ class Transaksi extends Model
     protected $guarded = [];
 
     function keranjang(){
-        return $this->belongsTo(Keranjang::class,'id_keranjang');
+        return $this->belongsTo(Keranjang::class,'id_keranjang')->withTrashed();
     }
     
 }

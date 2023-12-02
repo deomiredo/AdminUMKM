@@ -19,11 +19,15 @@ class Keranjang extends Model
 
     public function pembeli()
     {
-        return $this->belongsTo(Pembeli::class);
+        return $this->belongsTo(Pembeli::class,'id_pembeli');
     }
 
     public function produk()
     {
-        return $this->belongsToMany(Produk::class, 'keranjang_produk','id_keranjang','id_produk')->withPivot('jumlah');
+        return $this->belongsToMany(Produk::class, 'keranjang_produk','id_keranjang','id_produk')->withPivot('jumlah','id');
+    }
+    public function produkWithTrash()
+    {
+        return $this->belongsToMany(Produk::class, 'keranjang_produk','id_keranjang','id_produk')->withPivot('jumlah','id')->withTrashed();
     }
 }

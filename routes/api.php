@@ -7,6 +7,7 @@ use App\Http\Controllers\ProdukAPIController;
 use App\Http\Controllers\AuthAPIController;
 use App\Http\Controllers\KeranjangAPIController;
 use App\Http\Controllers\PembeliApiController;
+use App\Http\Controllers\TransaksiAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +35,13 @@ Route::get('/produk/{id}/komentar', [ProdukAPIController::class, 'komentar']);
 
 Route::get('/lihat-keranjang/{id}', [KeranjangAPIController::class, 'getCart']);
 Route::post('/tambah-keranjang', [KeranjangAPIController::class, 'addCart']);
-Route::put('/update-keranjang/{id}', [KeranjangAPIController::class, 'deleteCart']);
+Route::put('/update-keranjang', [KeranjangAPIController::class, 'updateCart']);
 Route::delete('/delete-produk-keranjang/{id}', [KeranjangAPIController::class, 'deleteProdukCart']);
+
+
+Route::post('/tambah-transaksi', [TransaksiAPIController::class, 'addTransaksi']);
+Route::get('/riwayat-transaksi/{pembeli}', [TransaksiAPIController::class, 'riwayatTransaksi']);
+Route::get('/update-bukti/{transaksi}', [TransaksiAPIController::class, 'updateBukti']);
 
 
 Route::get('/produk/search', [ProdukAPIController::class, 'searchProduk']);
