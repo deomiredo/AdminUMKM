@@ -80,7 +80,7 @@ class KeranjangAPIController extends Controller
                     ]);
                 }
             }else{
-                return response()->json(['message' => 'Dikarenakan penjual berbeda apakah yakin menghapus keranjang yang ada?']);
+                return response()->json(['message' => 'Dikarenakan penjual berbeda apakah yakin menghapus keranjang yang ada?','status'=>'beda penjual']);
             }
 
             // Jika produk sudah ada dalam keranjang, tambahkan jumlahnya
