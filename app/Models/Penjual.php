@@ -22,9 +22,9 @@ class Penjual extends Authenticatable
         return $this->pin;
     }
 
-    function produks()
+    function produk()
     {
-        return $this->hasMany(Produk::class, 'id_produk');
+        return $this->hasMany(Produk::class, 'id_penjual');
     }
 
     

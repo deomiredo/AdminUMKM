@@ -15,9 +15,14 @@ class ManagementPesananController extends Controller
      */
     public function index()
     {
-        $transaksi = auth('penjual')->user();
-        dd($transaksi->produks);
-       
+        $penjualId = auth('penjual')->user()->id;
+        $transaksi = Transaksi::with('keranjang','keranjang.produk','keranjang.pembeli')->whereHas('keranjang.produk.penjual', function ($query) use ($penjualId) {
+            $query->where('id', $penjualId);
+        })->get();
+        // $transaksi = $transaksi->produk()->where('id_penjual', $penjual->id)->get();
+        // $transaksi = $transaksi->keranjang();
+        
+    //    dd($transaksi);
         return view("client.pesanan.index",compact("transaksi"));
     }
 

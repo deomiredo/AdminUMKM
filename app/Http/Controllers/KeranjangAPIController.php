@@ -35,6 +35,9 @@ class KeranjangAPIController extends Controller
 
         // Cari produk berdasarkan ID
         $produk = Produk::findOrFail($request->id_produk);
+        if($produk->stok < 1){
+            return response()->json(['message' => 'Stok habis']);
+        }
 
         // Cek apakah pembeli sudah memiliki keranjang
         $pembeliId = $request->id_pembeli;
@@ -62,6 +65,9 @@ class KeranjangAPIController extends Controller
                         ->produk()
                         ->where('id_produk', $produk->id)
                         ->first();
+                    if($keranjangProduk->pivot->jumlah+1 > $produk->stok){
+                        return response()->json(['message' => 'Stok terbatas']);
+                    }
                     $keranjangProduk->pivot->update([
                         'jumlah' => $keranjangProduk->pivot->jumlah + 1,
                     ]);
@@ -113,13 +119,28 @@ class KeranjangAPIController extends Controller
     function getCart($id)
     {
         $pembeli = Pembeli::findOrFail($id);
-
+        //ambil data keranjangnya
         $keranjang = Keranjang::with('produk')
             ->where('id_pembeli', $pembeli->id)
             ->first();
-
+        //seleksi produk yang dalam keranjang melebihi stok 
+        $dataProdukOverStok = [];
+        foreach ($keranjang->produk as $key => $produk) {
+            if($produk->pivot->jumlah > $produk->stok){
+                $dataProdukOverStok[]=$produk;
+                //opsi 1: langsung hapus produk dari keranjang
+                KeranjangProduk::find($produk->pivot->id)->delete();
+                //opsi 2: mengurangi jumlah produk berdasarkan minimal stok yang ada
+                    //tetapi jika stok 0 maka produk dalam keranjang dihapus
+                // $produkInKeranjang = KeranjangProduk::find($produk->pivot->id);
+                // $produkInKeranjang->update(['jumlah'=>$produk->stok]);
+            }
+        }
+        $keranjang = Keranjang::with('produk')
+        ->where('id_pembeli', $pembeli->id)
+        ->first();
         // $keranjang = $pembeli->keranjang()->with('produk')->get();
-        return response()->json(['data' => $keranjang]);
+        return response()->json(['data' => $keranjang,'dataProdukOverStok'=> $dataProdukOverStok]);
     }
 
     function updateCart(Request $request){
