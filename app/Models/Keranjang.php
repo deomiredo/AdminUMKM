@@ -24,14 +24,10 @@ class Keranjang extends Model
 
     public function produk()
     {
-<<<<<<< HEAD
-        return $this->belongsToMany(Produk::class, 'keranjang_produk','id_keranjang','id_produk')->withPivot('id','jumlah');
-=======
         return $this->belongsToMany(Produk::class, 'keranjang_produk','id_keranjang','id_produk')->withPivot('jumlah','id');
     }
     public function produkWithTrash()
     {
         return $this->belongsToMany(Produk::class, 'keranjang_produk','id_keranjang','id_produk')->withPivot('jumlah','id')->withTrashed();
->>>>>>> f6b45d599e3c4efa05cefa0496566a93a3a739c6
     }
 }

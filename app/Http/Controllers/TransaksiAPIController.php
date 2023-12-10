@@ -18,6 +18,7 @@ class TransaksiAPIController extends Controller
         ]);
         $keranjang = Keranjang::where('id_pembeli', $request->id_pembeli)->first();
         $produkInCart = $keranjang->produk()->get();
+        // dd($produkInCart);
         $total = 0;
         foreach ($produkInCart as $key => $value) {
             $harga = $value->harga*$value->pivot->jumlah;
@@ -29,6 +30,12 @@ class TransaksiAPIController extends Controller
             'status'=>'belum dibayar',
             'metode_pembayaran'=>'cod'
         ]);
+        
+        foreach($produkInCart as $product){
+            $product->update([
+                'stok'=>$product->stok-$product->pivot->jumlah
+            ]);
+        }
         
         $keranjang->delete();
 
@@ -64,4 +71,6 @@ class TransaksiAPIController extends Controller
         ]);
         return response()->json(['message' => 'Bukti berhasil diupload, silahkan menuggu verifikasi penjual','status'=>'success']); 
     }
+
+   
 }

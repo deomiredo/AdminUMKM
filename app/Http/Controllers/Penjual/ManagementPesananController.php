@@ -19,6 +19,7 @@ class ManagementPesananController extends Controller
         $transaksi = Transaksi::with('keranjang','keranjang.produk','keranjang.pembeli')->whereHas('keranjang.produk.penjual', function ($query) use ($penjualId) {
             $query->where('id', $penjualId);
         })->get();
+        // dd($transaksi);  
         // $transaksi = $transaksi->produk()->where('id_penjual', $penjual->id)->get();
         // $transaksi = $transaksi->keranjang();
         
@@ -36,6 +37,14 @@ class ManagementPesananController extends Controller
         //
     }
 
+    function updateStatus(Transaksi $transaksi, Request $request) {
+        $validate = $request->validate([
+            'status'=>'required',
+        ]);
+        $transaksi->update(['status'=> $request->status]);
+
+        return back();
+    }
     /**
      * Store a newly created resource in storage.
      *

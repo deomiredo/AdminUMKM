@@ -123,22 +123,24 @@ class KeranjangAPIController extends Controller
         $keranjang = Keranjang::with('produk')
             ->where('id_pembeli', $pembeli->id)
             ->first();
+        // dd($keranjang);
         //seleksi produk yang dalam keranjang melebihi stok 
         $dataProdukOverStok = [];
-        foreach ($keranjang->produk as $key => $produk) {
-            if($produk->pivot->jumlah > $produk->stok){
-                $dataProdukOverStok[]=$produk;
-                //opsi 1: langsung hapus produk dari keranjang
-                KeranjangProduk::find($produk->pivot->id)->delete();
-                //opsi 2: mengurangi jumlah produk berdasarkan minimal stok yang ada
-                    //tetapi jika stok 0 maka produk dalam keranjang dihapus
-                // $produkInKeranjang = KeranjangProduk::find($produk->pivot->id);
-                // $produkInKeranjang->update(['jumlah'=>$produk->stok]);
+        if($keranjang){
+
+            foreach ($keranjang->produk as $key => $produk) {
+                if($produk->pivot->jumlah > $produk->stok){
+                    $dataProdukOverStok[]=$produk;
+                    //opsi 1: langsung hapus produk dari keranjang
+                    KeranjangProduk::find($produk->pivot->id)->delete();
+                    //opsi 2: mengurangi jumlah produk berdasarkan minimal stok yang ada
+                        //tetapi jika stok 0 maka produk dalam keranjang dihapus
+                    // $produkInKeranjang = KeranjangProduk::find($produk->pivot->id);
+                    // $produkInKeranjang->update(['jumlah'=>$produk->stok]);
+                }
             }
         }
-        $keranjang = Keranjang::with('produk')
-        ->where('id_pembeli', $pembeli->id)
-        ->first();
+        
         // $keranjang = $pembeli->keranjang()->with('produk')->get();
         return response()->json(['data' => $keranjang,'dataProdukOverStok'=> $dataProdukOverStok]);
     }
