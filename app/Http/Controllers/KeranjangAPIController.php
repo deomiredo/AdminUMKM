@@ -59,7 +59,7 @@ class KeranjangAPIController extends Controller
                     ->produk()
                     ->where('id_produk', $produk->id)
                     ->exists();
-                //jika dikeranjang sudah ada produknya maka tambah jumlahnya
+                //jika dikeranjang sudah ada produknya maka tambah jumlahny
                 if ($isProdukExist) {
                     $keranjangProduk = $keranjang
                         ->produk()
