@@ -54,7 +54,7 @@ class PembeliApiController extends Controller
             $url = Storage::url($path);
             $pembeli->update(['foto'=>$url]);
         }
-        dd($request->username, $request->foto);
+        // dd($request->username, $request->foto);
         $pembeli->update([
             'nama_lengkap'=>$request->nama_lengkap,
             'alamat'=> $request->alamat,

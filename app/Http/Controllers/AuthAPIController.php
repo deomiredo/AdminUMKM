@@ -43,10 +43,10 @@ class AuthAPIController extends Controller
             'foto'=>$url,
             'deskripsi'=>  $request->deskripsi
         ]);
-        Keranjang::create([
-            'total'=>0,
-            'id_pembeli'=>$pembeli->id,
-        ]);
+        // Keranjang::create([
+        //     'total'=>0,
+        //     'id_pembeli'=>$pembeli->id,
+        // ]);
         // dd($request->gambar);
         return response()->json(['data' => "Registrasi Berhasil, Silahkan Hubungi Admin Untuk Verifikasi Akun",
         'status' => 'Berhasil'

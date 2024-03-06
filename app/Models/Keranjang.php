@@ -24,19 +24,12 @@ class Keranjang extends Model
 
     public function produk()
     {
-<<<<<<< Updated upstream
-        return $this->belongsToMany(Produk::class, 'keranjang_produk','id_keranjang','id_produk')->withPivot('jumlah','id');
-=======
 
         return $this->belongsToMany(Produk::class, 'keranjang_produk','id_keranjang','id_produk')->withPivot('id','jumlah');
->>>>>>> Stashed changes
+// >>>>>>> Stashed changes
     }
     public function produkWithTrash()
     {
         return $this->belongsToMany(Produk::class, 'keranjang_produk','id_keranjang','id_produk')->withPivot('jumlah','id')->withTrashed();
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     }
 }
