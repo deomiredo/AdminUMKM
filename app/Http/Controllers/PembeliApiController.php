@@ -49,6 +49,7 @@ class PembeliApiController extends Controller
             // dd($gambar);
             // $pathFoto = str_replace(url('/storage'), '', $pembeli->foto);
             // Storage::delete($pathFoto);
+            
             $nama_file = Str::uuid() . '.' . $foto->getClientOriginalExtension();
             $path = $foto->storeAs('images/pembeli', $nama_file);
             $url = Storage::url($path);
