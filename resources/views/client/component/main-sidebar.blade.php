@@ -55,7 +55,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item @if(request()->is('statistik-penjual*','statistik-pembeli-penjual*','analitik-pelanggan*')) menu-open @endif">
+          {{-- <li class="nav-item @if(request()->is('statistik-penjual*','statistik-pembeli-penjual*','analitik-pelanggan*')) menu-open @endif">
             <a href="#" class="nav-link @if(request()->is('statistik-penjual*','statistik-pembeli-penjual*','analitik-pelanggan*')) active @endif">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
@@ -87,7 +87,7 @@
                   </a>
                 </li>
             </ul>
-          </li>
+          </li> --}}
           
         </ul>
       </nav>
