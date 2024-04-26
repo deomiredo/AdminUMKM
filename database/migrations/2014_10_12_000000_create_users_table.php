@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('fullName');
             $table->string('name')->unique();
             $table->string('password');
-            $table->text('foto')->default(asset('img/default-profile.jpg'));
+            $table->string('foto')->default(asset('img/default-profile.jpg'));
             $table->timestamps();
         });
     }

@@ -11,13 +11,13 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('admin')}}/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  {{-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> --}}
   <!-- Tempusdominus Bootstrap 4 -->
   <link rel="stylesheet" href="{{asset('admin')}}/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="{{asset('admin')}}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="{{asset('admin')}}/plugins/jqvmap/jqvmap.min.css">
+  {{-- <link rel="stylesheet" href="{{asset('admin')}}/plugins/jqvmap/jqvmap.min.css"> --}}
 
   <link rel="stylesheet" href="{{asset('admin')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="{{asset('admin')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -114,10 +114,10 @@
 <!-- Sparkline -->
 <script src="{{asset('admin')}}/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
-<script src="{{asset('admin')}}/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="{{asset('admin')}}/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+{{-- <script src="{{asset('admin')}}/plugins/jqvmap/jquery.vmap.min.js"></script> --}}
+{{-- <script src="{{asset('admin')}}/plugins/jqvmap/maps/jquery.vmap.usa.js"></script> --}}
 <!-- jQuery Knob Chart -->
-<script src="{{asset('admin')}}/plugins/jquery-knob/jquery.knob.min.js"></script>
+{{-- <script src="{{asset('admin')}}/plugins/jquery-knob/jquery.knob.min.js"></script> --}}
 <!-- daterangepicker -->
 <script src="{{asset('admin')}}/plugins/moment/moment.min.js"></script>
 <script src="{{asset('admin')}}/plugins/daterangepicker/daterangepicker.js"></script>
@@ -147,7 +147,7 @@
 <!-- AdminLTE for demo purposes -->
 {{-- <script src="{{asset('admin')}}/dist/js/demo.js"></script> --}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('admin')}}/dist/js/pages/dashboard.js"></script>
+
 <script>
   $(function () {
       //Initialize Select2 Elements

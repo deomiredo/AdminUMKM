@@ -11,6 +11,24 @@
             // CodeMirror
 
         })
+        function previewImage() {
+            var imageInput = document.getElementById('imageInput');
+            var imagePreview = document.getElementById('imagePreview');
+            
+            if (imageInput.files && imageInput.files[0]) {
+                var reader = new FileReader();
+    
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                }
+    
+                reader.readAsDataURL(imageInput.files[0]);
+            } else {
+                imagePreview.src = '{{ old('logo',$penjual->logo) }}';
+                // imagePreview.style.display = 'none';
+            }
+        }
     </script>
 @endsection
 
@@ -19,12 +37,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Pembeli</h1>
+                    <h1 class="m-0">Profile</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('pembeli') }}">Pembeli</a></li>
-                        <li class="breadcrumb-item active">Tambah Pembeli</li>
+                        <li class="breadcrumb-item"><a href="{{ route('penjual') }}">Profile</a></li>
+                        <li class="breadcrumb-item active">Edit Profile</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -38,10 +56,11 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Tambah Pembeli</h5>
+                    <h5 class="card-title">Edit Profile</h5>
                 </div>
-                <form action="{{ route('store-pembeli') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('penjual.profile.update') }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="card-body">
                         {{-- <div class="form-group row">
                             <label for="id_kategori_produk" class="col-sm-2 col-form-label">Pilih Penjual</label>
@@ -62,21 +81,10 @@
 
                         </div> --}}
                         <div class="form-group row">
-                            <label for="nama_lengkap" class="col-sm-2 col-form-label">Nama Pembeli</label>
+                            <label for="nama" class="col-sm-2 col-form-label">Nama Penjual</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="Masukan Nama Pembeli" name="nama_lengkap" value="{{ old('nama_lengkap') }}" required>
-                                @error('nama_lengkap')
-                                    <small class="text-danger">
-                                        {{ $message }}
-                                    </small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="nama_lengkap" class="col-sm-2 col-form-label">Alamat</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="Masukan Alamat" name="alamat" value="{{ old('alamat') }}" required>
-                                @error('nama_lengkap')
+                                <input type="text" class="form-control" placeholder="Masukan Nama Penjual" name="nama" value="{{ old('nama',$penjual->nama) }}" required>
+                                @error('nama')
                                     <small class="text-danger">
                                         {{ $message }}
                                     </small>
@@ -118,7 +126,7 @@
                         <div class="form-group row">
                             <label for="username" class="col-sm-2 col-form-label">Username</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="Masukan Username" name="username" value="{{ old('username') }}" required>
+                                <input type="text" class="form-control" placeholder="Masukan Username" name="username" value="{{ old('username',$penjual->username) }}" required>
                                 @error('username')
                                     <small class="text-danger">
                                         {{ $message }}
@@ -129,7 +137,7 @@
                         <div class="form-group row">
                             <label for="no_hp" class="col-sm-2 col-form-label">Nomor HP</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" placeholder="Masukan Nomor HP" name="no_hp" value="{{ old('no_hp') }}">
+                                <input type="number" class="form-control" placeholder="Masukan Nomor HP" name="no_hp" value="{{ old('no_hp',$penjual->no_hp) }}">
                                 @error('no_hp')
                                     <small class="text-danger">
                                         {{ $message }}
@@ -138,10 +146,10 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="password" class="col-sm-2 col-form-label">Password</label>
+                            <label for="pin" class="col-sm-2 col-form-label">PIN</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" placeholder="Masukan Password untuk Login" name="password" value="{{ old('password') }}">
-                                @error('password')
+                                <input type="number" class="form-control" placeholder="Masukan Pin untuk Login" name="pin" value="{{ old('pin',$penjual->pin) }}">
+                                @error('pin')
                                     <small class="text-danger">
                                         {{ $message }}
                                     </small>
@@ -149,61 +157,46 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="verifikasi" class="col-sm-2 col-form-label">Verifikasi</label>
-                            <div class="col-sm-10">
-                                <select class="form-control" style="width: 100%;" name="verifikasi" >
-                                    <option selected value="{{ 0 }}">Belum Verifikasi</option>
-                                    <option value="{{ 1 }}">Sudah Verifikasi</option>
-                                    {{-- @foreach ($pembelis as $pembeli)
-                                        <option value="{{ $pembeli->id }}">{{ $pembeli->nama_lengkap }} | {{ $penjual->nama }}</option>
-                                    @endforeach --}}
-                                </select>
-
-                                @error('verifikasi')
-                                    <small class="text-danger">
-                                        {{ $message }}
-                                    </small>
-                                @enderror
-                            </div>
-                        </div>
-                        {{-- <div class="form-group row">
-                            <label for="verifikasi" class="col-sm-2 col-form-label">Verifikasi</label>
-                            <div class="col-sm-10">
-                                <div class="form-group">
-                                    <label>Status</label><br>
-                                    <label class="radio-inline">
-                                      <input type="radio" name="status" value="true"> Valid
-                                    </label>
-                                    <label class="radio-inline">
-                                      <input type="radio" name="status" value="false"> Belum Valid
-                                    </label>
-                                </div>
-                                @error('verifikasi')
-                                    <small class="text-danger">
-                                        {{ $message }}
-                                    </small>
-                                @enderror
-                            </div>
-                        </div> --}}
-                        <div class="form-group row">
-                            <label for="foto" class="col-sm-2 col-form-label">Foto Pembeli</label>
+                            <label for="logo" class="col-sm-2 col-form-label">Logo Toko</label>
                             <div class="col-sm-10">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="foto">
+                                    <input type="file" class="custom-file-input" id="imageInput" onchange="previewImage()" name="logo">
                                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                 </div>
-                                @error('foto')
+                                @error('logo')
                                     <small class="text-danger">
                                         {{ $message }}
                                     </small>
                                 @enderror
+                                <img id="imagePreview" src="{{ old('logo',$penjual->logo) }}" alt="Image Preview" style="max-width: 300px; max-height: 300px; ">
                             </div>
                         </div>
-                    
-                    {{-- <div class="form-group row">
+                    <div class="form-group row">
+                        <label for="nama_toko" class="col-sm-2 col-form-label">Nama Toko</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="Masukan Nama Toko" name="nama_toko" value="{{ old('nama_toko',$penjual->nama_toko) }}">
+                            @error('nama_toko')
+                                <small class="text-danger">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="Masukan Alamat" name="alamat" value="{{ old('alamat',$penjual->alamat) }}">
+                            @error('alamat')
+                                <small class="text-danger">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="nama_bank" class="col-sm-2 col-form-label">Nama Bank</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="Masukan Nama bank" name="nama_bank" value="{{ old('nama_bank') }}">
+                            <input type="text" class="form-control" placeholder="Masukan Nama bank" name="nama_bank" value="{{ old('nama_bank',$penjual->nama_bank) }}">
                             @error('nama_bank')
                                 <small class="text-danger">
                                     {{ $message }}
@@ -214,7 +207,7 @@
                     <div class="form-group row">
                         <label for="no_rekening" class="col-sm-2 col-form-label">Nomor Rekening</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" placeholder="Masukan No Rekening" name="no_rekening" value="{{ old('no_rekening') }}">
+                            <input type="number" class="form-control" placeholder="Masukan No Rekening" name="no_rekening" value="{{ old('no_rekening',$penjual->no_rekening) }}">
                             @error('no_rekening')
                                 <small class="text-danger">
                                     {{ $message }}
@@ -225,19 +218,19 @@
                     <div class="form-group row">
                         <label for="atas_nama" class="col-sm-2 col-form-label">Atas Nama</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="Masukan Atas Nama dari Nomor Rekening" name="atas_nama" value="{{ old('atas_nama') }}">
+                            <input type="text" class="form-control" placeholder="Masukan Atas Nama dari Nomor Rekening" name="atas_nama" value="{{ old('atas_nama',$penjual->atas_nama) }}">
                             @error('atas_nama')
                                 <small class="text-danger">
                                     {{ $message }}
                                 </small>
                             @enderror
                         </div>
-                    </div> --}}
+                    </div>
                         <div class="form-group row">
-                            <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi Pembeli</label>
+                            <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi Toko</label>
                             <div class="col-sm-10">
                                 <textarea id="summernote" name="deskripsi" required>
-                                    {{ old('deskripsi') }}
+                                    {{ old('deskripsi',$penjual->deskripsi) }}
                                   </textarea>
                                 @error('deskripsi')
                                     <small class="text-danger">
@@ -250,10 +243,9 @@
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-success mr-1">Submit</button>
-                        <a href={{ route('penjual') }} class="btn btn-default ">Cancel</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-@endsection
+@endsection=

@@ -15,6 +15,7 @@ use App\Http\Controllers\Penjual\HomeController as PenjualHomeController;
 use App\Http\Controllers\Penjual\KomentardanPenilaianController;
 use App\Http\Controllers\Penjual\ManagementPesananController;
 use App\Http\Controllers\Penjual\ProdukController as PenjualProdukController;
+use App\Http\Controllers\Penjual\ProfileController;
 use App\Models\Produk;
 
 /*
@@ -44,6 +45,7 @@ Route::middleware(['penjual'])->group(function(){
     Route::prefix('penjual')->group(function(){
         Route::get('/dashboard',[PenjualHomeController::class,'index'])->name('penjual.dashboard');
         
+        
         Route::prefix('manajemen-produk')->group(function(){
             Route::get('/',[PenjualProdukController::class,'index'])->name('penjual.produk.index');
             Route::get('/tambah-produk',[PenjualProdukController::class,'create'])->name('penjual.produk.create');
@@ -54,9 +56,14 @@ Route::middleware(['penjual'])->group(function(){
         });
         Route::prefix('manajemen-pesanan')->group(function(){
             Route::get('/',[ManagementPesananController::class,'index'])->name('penjual.pesanan.index');
+            Route::post('/update-status/{transaksi}',[ManagementPesananController::class,'updateStatus'])->name('penjual.pesanan.updateStatus');
         });
         Route::prefix('komentar-dan-penilaian')->group(function(){
             Route::get('/',[KomentardanPenilaianController::class,'index'])->name('penjual.komentar.index');
+        });
+        Route::prefix('myprofile')->group(function(){
+            Route::get('/',[ProfileController::class,'index'])->name('penjual.profile.index');
+            Route::put('/',[ProfileController::class,'update'])->name('penjual.profile.update');
         });
     });
 });

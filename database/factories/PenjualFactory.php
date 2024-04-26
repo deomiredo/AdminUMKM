@@ -18,7 +18,6 @@ class PenjualFactory extends Factory
     {
         return [
             'nama'=>fake()->name(),
-            
             'username'=>fake()->userName(),
             'no_hp'=>fake()->phoneNumber(),
             'pin'=>fake()->numberBetween(1,1000),

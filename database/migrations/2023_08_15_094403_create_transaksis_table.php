@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_keranjang')->constrained('keranjang');
             $table->decimal('total_harga');
-            $table->enum('status',['dibatalkan', 'belum dibayar', 'menunggu verifikasi', 'selesai']);
-            $table->enum('metode_pembayaran', ['cod', 'transfer bank']);
+            $table->enum('status',['DIBATALKAN', 'BELUM DIBAYAR', 'MENUNGGU VERIFIKASI', 'MENUJU ALAMAT', 'SELESAI']);
+            $table->enum('metode_pembayaran', ['COD', 'TRANSFER']);
             $table->text('bukti')->nullable();
             $table->timestamps();
             $table->softDeletes();

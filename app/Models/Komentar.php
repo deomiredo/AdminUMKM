@@ -8,11 +8,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Komentar extends Model
 {
-    use HasFactory,SoftDeletes;
-    protected $table= 'komentar';
-
-    public function pembeli(){
-        return $this -> belongsTo(Pembeli::class, 'id_pembeli');
-    }
+    use HasFactory, SoftDeletes;
+    protected $table = 'komentar';
     protected $guarded = [];
+
+
+
+    public function pembeli()
+    {
+        return $this->belongsTo(Pembeli::class, 'id_pembeli');
+    }
+
+    function produk()
+    {
+        return $this->belongsTo(Produk::class, 'id_produk');
+    }
 }

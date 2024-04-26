@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Penjual;
 
 use App\Http\Controllers\Controller;
+use App\Models\Komentar;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class KomentardanPenilaianController extends Controller
@@ -14,7 +16,13 @@ class KomentardanPenilaianController extends Controller
      */
     public function index()
     {
-        //
+        $penjualId = auth('penjual')->user()->id;
+        // $komentars = Komentar::all();
+        $komentars = Komentar::with(['pembeli', 'produk' => function ($query) use ($penjualId) {
+            $query->where('id_penjual', $penjualId);
+        }], 'pembeli.transaksi')->get();
+        // dd($komentars);
+        return view('client.komentar.index', compact('komentars'));
     }
 
     /**
