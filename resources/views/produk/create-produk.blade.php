@@ -2,7 +2,7 @@
 
 
 
-@section('script')
+@section('js')
     <script>
         $(function() {
             // Summernote

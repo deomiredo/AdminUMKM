@@ -1,6 +1,6 @@
 @extends('layouts.main-layout')
 
-@section('script')
+@section('js')
     <script>
         $(function() {
             // Summernote

@@ -1,4 +1,9 @@
 @extends('layouts.main-layout')
+
+@section('js')
+<script src="{{asset('admin')}}/dist/js/pages/dashboard.js"></script>
+@endsection
+
 @section('content-header')
     <div class="content-header">
         <div class="container-fluid">

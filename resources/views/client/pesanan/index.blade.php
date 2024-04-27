@@ -24,13 +24,9 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-
-            <!-- /.card -->
-
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h3 class="card-title">Data Pesanan </h3>
-                    {{-- <a class="item-right ml-auto btn btn-success btn-sm" href="{{ route('penjual.produk.create') }}"> Tambah</a> --}}
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -44,26 +40,11 @@
                                 <th>Total Harga</th>
                                 <th>Metode Pembayaran</th>
                                 <th>Status</th>
-                                <th>Aksi</th>
-
+                                <th>Produk</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>15</td>
-                                <td>Fajar Maulideo</td>
-                                <td>Link Foto</td>
-                                <td>12000</td>
-                                <td>COD</td>
-                                <td>Belum Dibayar</td>
-                                <td>
-
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary">
-                                        Edit Status
-                                    </button>
-                            {{-- @foreach ($transaksi->where('status','') as $item)
+                            @forelse ($transaksi->whereNotIn('status',['DIBATALKAN','SELESAI']) as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->id }}</td>
@@ -80,65 +61,17 @@
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="modalViewProdukTransaksi{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <table id="example1" class="table table-bordered table-striped">
-                                                            <thead>
-                                                                <tr>
-                                                                    <td>NO</td>
-                                                                    <td>Nama Produk</td>
-                                                                    <td>harga produk</td>
-                                                                    <td>jumlah produk</td>
-                                                                    <td>total harga</td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            
-                                                                @foreach ($item->keranjang->produk as $produk)
-                                                                    <tr>
-                                                                        <td>{{ $loop->iteration }}</td>
-                                                                        <td>{{ $produk->nama_produk }}</td>
-                                                                        <td>Rp. {{ $produk->harga }}</td>
-                                                                        <td>{{ $produk->pivot->jumlah }}</td>
-                                                                        <td>Rp. {{ $produk->pivot->jumlah*$produk->harga }}</td>
-                                                                    </tr>
-                                                                @endforeach
-                                                                <tr class="bg-primary">
-                                                                    <td colspan="3">Total Harga</td>
-                                                                    <td colspan="2">Rp. {{ $item->total_harga }}</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @include('client.pesanan.detail-product')
                                         <ul>
 
                                         </ul>
                                     </td>
-
-                                    {{-- <td>{{ $produk->harga }}</td>
-                                    <td>{{ $produk->stok }}</td>
-                                    <td>{{ $produk->penjual->nama }}</td> --}}
-                                    {{-- <td>
-                                        <a href="{{ route('penjual.produk.edit',$produk->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                        @include('produk.delete-produk')
-                                    </td> --}}
-                                {{-- </tr>
-                            @endforeach --}}
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="8" class="text-center">Tidak ada data</td>
+                                </tr>
+                            @endforelse
                         </tbody>
 
                     </table>
@@ -153,8 +86,8 @@
 
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h3 class="card-title">Data Riwayat Pesanan </h3>
-                    {{-- <a class="item-right ml-auto btn btn-success btn-sm" href="{{ route('penjual.produk.create') }}"> Tambah</a> --}}
+                    <h3 class="card-title">Riwayat Pesanan </h3>
+
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -173,39 +106,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <td>1</td>
-                                <td>20</td>
-                                <td>Fajar Maulideo</td>
-                                <td>Link Foto</td>
-                                <td>12000</td>
-                                <td>Transfer bank</td>
-                                <td>Selesai</td>
-                                <td>
-
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary">
-                                        Edit Status
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                    <td>25</td>
-                                    <td>Fajar Maulideo</td>
-                                    <td>Link Foto</td>
-                                    <td>12000</td>
-                                    <td>Transfer bank</td>
-                                    <td>Selesai</td>
-                                    <td>
-    
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary">
-                                            Edit Status
-                                        </button>
-                                    </td>
-                                </tr>
-                            {{-- @foreach ($transaksi as $item)
+                            @forelse ($transaksi->whereIn('status', ['DIBATALKAN','SELESAI']) as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->id }}</td>
@@ -222,65 +123,18 @@
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="modalViewProdukTransaksi{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <table id="example1" class="table table-bordered table-striped">
-                                                            <thead>
-                                                                <tr>
-                                                                    <td>NO</td>
-                                                                    <td>Nama Produk</td>
-                                                                    <td>harga produk</td>
-                                                                    <td>jumlah produk</td>
-                                                                    <td>total harga</td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            
-                                                                @foreach ($item->keranjang->produk as $produk)
-                                                                    <tr>
-                                                                        <td>{{ $loop->iteration }}</td>
-                                                                        <td>{{ $produk->nama_produk }}</td>
-                                                                        <td>Rp. {{ $produk->harga }}</td>
-                                                                        <td>{{ $produk->pivot->jumlah }}</td>
-                                                                        <td>Rp. {{ $produk->pivot->jumlah*$produk->harga }}</td>
-                                                                    </tr>
-                                                                @endforeach
-                                                                <tr class="bg-primary">
-                                                                    <td colspan="3">Total Harga</td>
-                                                                    <td colspan="2">Rp. {{ $item->total_harga }}</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @include('client.pesanan.detail-product')
                                         <ul>
 
                                         </ul>
                                     </td>
 
-                                    {{-- <td>{{ $produk->harga }}</td>
-                                    <td>{{ $produk->stok }}</td>
-                                    <td>{{ $produk->penjual->nama }}</td> --}}
-                                    {{-- <td>
-                                        <a href="{{ route('penjual.produk.edit',$produk->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                        @include('produk.delete-produk')
-                                    </td> --}}
-                                {{-- </tr>
-                            @endforeach --}}
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="8" class="text-center">Tidak ada data</td>
+                                </tr>
+                            @endforelse
                         </tbody>
 
                     </table>
@@ -294,7 +148,7 @@
     <!-- /.row -->
 @endsection
 
-@section('script')
+@section('js')
     <script>
         $(function() {
             $("#example1").DataTable({

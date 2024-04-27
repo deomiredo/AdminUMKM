@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nama_produk');
             $table->longText('deskripsi');
             $table->text('gambar');
-            $table->decimal('harga',$total=10);
+            $table->decimal('harga',$total=10,$places=0);
             $table->integer('stok')->default(0);
             $table->foreignId('id_kategori_produk')->constrained('kategori_produk');
             $table->foreignId('id_penjual')->constrained('penjual');

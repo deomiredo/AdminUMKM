@@ -74,7 +74,7 @@
     </section>
 @endsection
 
-@section('script')
+@section('js')
     <script>
         $(function() {
             $("#example1").DataTable({

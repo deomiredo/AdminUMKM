@@ -15,7 +15,9 @@ class TransaksiAPIController extends Controller
     function addTransaksi(Request $request) {
         $validate = $request->validate([
             "id_pembeli"=> "required",
+            'metode_pembayaran'=>'required'
         ]);
+        
         $keranjang = Keranjang::where('id_pembeli', $request->id_pembeli)->first();
         $produkInCart = $keranjang->produk()->get();
         // dd($produkInCart);
@@ -24,16 +26,16 @@ class TransaksiAPIController extends Controller
             $harga = $value->harga*$value->pivot->jumlah;
             $total += $harga;
         }
-        Transaksi::create([
+        $transaksi = Transaksi::create([
             'id_keranjang'=>$keranjang->id,
             'total_harga'=>$total,
-            'status'=>'belum dibayar',
-            'metode_pembayaran'=>'cod'
+            'status'=> $request->metode_pembayaran == 'TRANSFER'?'BELUM DIBAYAR':'MENUJU ALAMAT',
+            'metode_pembayaran'=> $request->metode_pembayaran
         ]);
         
         foreach($produkInCart as $product){
             $product->update([
-                'stok'=>$product->stok-$product->pivot->jumlah
+                'stok'=>$product->stok - $product->pivot->jumlah
             ]);
         }
         
@@ -48,7 +50,7 @@ class TransaksiAPIController extends Controller
         $riwayatTransaksi = Transaksi::whereHas('keranjang', function ($query) use ($pembeli) {
             $query->withTrashed();
             $query->where('id_pembeli', $pembeli->id);
-        })->with('keranjang','keranjang.produk','keranjang.produk.penjual')->get();
+        })->with('keranjang','keranjang.produk','keranjang.produk.penjual')->orderBy('created_at','desc')->get();
         return response()->json(['data' => $riwayatTransaksi,'status'=>'success']); 
     }
 

@@ -53,7 +53,7 @@ class ManajemenPenjualController extends Controller
                 // pesan validasi lainnya
             ],
         );
-        // dd($request->gambar);
+        // dd($request->logo);
 
         if($request->hasFile('logo')){
             $logo = $request->file('logo');
@@ -116,7 +116,8 @@ class ManajemenPenjualController extends Controller
                 // pesan validasi lainnya
             ],
         );
-        if($request->file('logo'))
+        
+        if($request->hasFile('logo'))
         {
             $pathFoto = str_replace(url('/storage'), '', $penjual->logo);
             Storage::delete($pathFoto);
