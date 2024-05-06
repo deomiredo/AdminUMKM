@@ -40,7 +40,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('penjual.pesanan.index') }}" class="nav-link @if (request()->is('penjual/manajemen-pesanan*')) active @endif">
-                        <i class="nav-icon fas fa-cart"></i>
+                        <i class="nav-icon fas fa-user"></i>
                         <p>
                             Management Pesanan
                         </p>
@@ -54,15 +54,15 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item @if (request()->is('statistik-penjual*', 'statistik-pembeli-penjual*', 'analitik-pelanggan*')) menu-open @endif">
+                {{-- <li class="nav-item @if (request()->is('statistik-penjual*', 'statistik-pembeli-penjual*', 'analitik-pelanggan*')) menu-open @endif">
                     <a href="#" class="nav-link @if (request()->is('statistik-penjual*', 'statistik-pembeli-penjual*', 'analitik-pelanggan*')) active @endif">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Statistik dan Laporan
                             <i class="fas fa-angle-left right"></i>
                         </p>
-                    </a>
-                    <ul class="nav nav-treeview">
+                    </a> --}}
+                    {{-- <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('statistik-penjualan') }}" class="nav-link @if (request()->is('statistik-penjual*')) active @endif">
                                 <i class="far fa-circle nav-icon"></i>
@@ -94,7 +94,7 @@
                           Profile
                       </p>
                   </a>
-              </li>
+              </li> --}}
 
             </ul>
         </nav>

@@ -57,7 +57,7 @@
 
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalViewProdukTransaksi{{ $item->id }}">
-                                            detail product
+                                            detail
                                         </button>
 
                                         <!-- Modal -->
@@ -119,7 +119,7 @@
 
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalViewProdukTransaksi{{ $item->id }}">
-                                            detail product
+                                            detail
                                         </button>
 
                                         <!-- Modal -->
@@ -148,7 +148,7 @@
     <!-- /.row -->
 @endsection
 
-@section('js')
+{{-- @section('js')
     <script>
         $(function() {
             $("#example1").DataTable({
@@ -174,4 +174,4 @@
             // });
         });
     </script>
-@endsection
+@endsection --}}
