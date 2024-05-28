@@ -44,7 +44,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($transaksi->whereNotIn('status',['DIBATALKAN','SELESAI']) as $item)
+                            @forelse ($transaksi->whereNotIn('status',['DIBATALKAN','dibatalkan','SELESAI','selesai']) as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->id }}</td>
@@ -106,7 +106,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($transaksi->whereIn('status', ['DIBATALKAN','SELESAI']) as $item)
+                            @forelse ($transaksi->whereIn('status', ['DIBATALKAN','dibatalkan','SELESAI','selesai']) as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->id }}</td>
