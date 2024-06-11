@@ -36,7 +36,7 @@
                                 <th>NO</th>
                                 <th>Nomor Transaksi</th>
                                 <th>Nama Pembeli</th>
-                                <th>Foto Pembeli</th>
+                                <th>Bukti Pembayaran</th>
                                 <th>Total Harga</th>
                                 <th>Metode Pembayaran</th>
                                 <th>Status</th>
@@ -97,7 +97,7 @@
                                 <th>NO</th>
                                 <th>Nomor Transaksi</th>
                                 <th>Nama Pembeli</th>
-                                <th>Foto Pembeli</th>
+                                <th>Bukti Pembayaran</th>
                                 <th>Total Harga</th>
                                 <th>Metode Pembayaran</th>
                                 <th>Status</th>
