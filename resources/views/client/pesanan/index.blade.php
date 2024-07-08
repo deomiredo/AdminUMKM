@@ -37,6 +37,7 @@
                                 <th>Nomor Transaksi</th>
                                 <th>Nama Pembeli</th>
                                 <th>Foto Pembeli</th>
+                                <th>Bukti Transfer</th>
                                 <th>Total Harga</th>
                                 <th>Metode Pembayaran</th>
                                 <th>Status</th>
@@ -50,6 +51,7 @@
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->keranjang->pembeli->nama_lengkap }}</td>
                                     <td><a href="{{ $item->keranjang->pembeli->foto }}" target="_blank">lihat gambar</a> </td>
+                                    <td><a href="{{ $item->bukti}}" target="_blank">lihat gambar</a></td>
                                     <td>{{ $item->total_harga }}</td>
                                     <td>{{ $item->metode_pembayaran }}</td>
                                     <td>{{ $item->status }}</td>
