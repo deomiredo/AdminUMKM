@@ -7,7 +7,10 @@ use App\Http\Controllers\ProdukAPIController;
 use App\Http\Controllers\AuthAPIController;
 use App\Http\Controllers\KeranjangAPIController;
 use App\Http\Controllers\PembeliApiController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PenjualApiController;
 use App\Http\Controllers\TransaksiAPIController;
+use App\Http\Controllers\Penjual\KomentardanPenilaianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,12 +30,15 @@ Route::post('/login', [AuthAPIController::class, 'login']);
 Route::get('/profile-pembeli/{id}',[PembeliApiController::class,'profile']);
 Route::post('/profile-pembeli/{id}',[PembeliApiController::class,'editProfile']);
 
+Route::get('/profile-penjual/{id}',[PenjualApiController::class,'profile']);
+
 
 Route::get('/produk', [ProdukAPIController::class, 'index'])->name('list-produk');
 Route::get('/category-produk/{id}', [ProdukAPIController::class, 'categoryProduk']);
 Route::get('/more-produk-penjual/{id}', [ProdukAPIController::class, 'moreProduk']);
-Route::get('/produk/{id}/komentar', [ProdukAPIController::class, 'komentar']);
 
+Route::get('/produk/{id}/komentar', [ProdukAPIController::class, 'komentar']);
+Route::post('/komentars', [KomentardanPenilaianController::class, 'store']);
 
 Route::get('/lihat-keranjang/{id}', [KeranjangAPIController::class, 'getCart']);
 Route::post('/tambah-keranjang', [KeranjangAPIController::class, 'addCart']);
@@ -42,7 +48,7 @@ Route::delete('/delete-produk-keranjang/{id}', [KeranjangAPIController::class, '
 
 Route::post('/tambah-transaksi', [TransaksiAPIController::class, 'addTransaksi']);
 Route::get('/riwayat-transaksi/{pembeli}', [TransaksiAPIController::class, 'riwayatTransaksi']);
-Route::get('/update-bukti/{transaksi}', [TransaksiAPIController::class, 'updateBukti']);
+Route::post('/update-bukti/{transaksi}', [TransaksiAPIController::class, 'updateBukti']);
 
 
 Route::get('/produk/search', [ProdukAPIController::class, 'searchProduk']);
