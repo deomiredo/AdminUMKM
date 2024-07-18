@@ -43,7 +43,21 @@ class KomentardanPenilaianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_pembeli' => 'required|exists:pembeli,id',
+            'id_produk' => 'required|exists:produk,id',
+            'komentar' => 'string|max:255',
+            'penilaian' => 'required|integer|min:1|max:5',
+        ]);
+
+        $komentar = Komentar::create([
+            'id_pembeli' => $request->id_pembeli,
+            'id_produk' => $request->id_produk,
+            'komentar' => $request->komentar,
+            'penilaian' => $request->penilaian,
+        ]);
+
+        return response()->json($komentar, 201);
     }
 
     /**
