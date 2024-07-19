@@ -102,3 +102,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/statistik-pembeli-penjual', [StatistikPembeliPenjualController::class, 'index'])->name('statistik-pembeli-penjual');
     Route::get('/analitik-pelanggan', [AnalitikPelangganController::class, 'index'])->name('analitik-pelanggan');
 });
+
+
+Route::get('test', function(){
+    return 'tes';
+});
