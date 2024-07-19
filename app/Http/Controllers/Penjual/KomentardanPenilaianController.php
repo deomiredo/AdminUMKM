@@ -18,9 +18,12 @@ class KomentardanPenilaianController extends Controller
     {
         $penjualId = auth('penjual')->user()->id;
         // $komentars = Komentar::all();
-        $komentars = Komentar::with(['pembeli', 'produk' => function ($query) use ($penjualId) {
+        $komentars = Komentar::whereHas('produk', function ($query) use ($penjualId) {
             $query->where('id_penjual', $penjualId);
-        }], 'pembeli.transaksi')->get();
+        })
+        ->with(['pembeli', 'produk', 'pembeli.transaksi'])
+        ->get();
+        // dd($komentars);
         // dd($komentars);
         return view('client.komentar.index', compact('komentars'));
     }
