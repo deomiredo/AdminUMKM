@@ -1,7 +1,44 @@
 @extends('layouts.main-layout')
 
 @section('js')
+
 <script src="{{asset('admin')}}/dist/js/pages/dashboard.js"></script>
+
+<script>
+    // Pass the PHP data to JavaScript
+    const salesData = <?php echo $jsonData; ?>;
+    console.log(salesData)
+    const labels = salesData.map(data => data.date);
+    const data = salesData.map(data => data.total_sales);
+
+    const ctx = document.getElementById('salesChart').getContext('2d');
+    const salesChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Total Sales',
+                data: data,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day'
+                    }
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 @endsection
 
 @section('content-header')
@@ -48,7 +85,7 @@
                     <div class="tab-content p-0">
 
                         <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
-                            <canvas id="transaksi-chart-canvas" height="300" style="height: 300px;"></canvas>
+                            <canvas id="salesChart" width="400" height="200"></canvas>
                         </div>
                         {{-- <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
                             <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
